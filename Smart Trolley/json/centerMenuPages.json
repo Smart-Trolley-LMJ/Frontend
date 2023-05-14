@@ -1,0 +1,19 @@
+{
+	"QStackedWidget":[
+		{
+			"name":"centerMenuPages",
+			"navigation":[
+				{
+					"navigationButtons":[
+						{
+							"settingsBtn": "settingsPage",
+							"infoBtn": "informationPage",
+                            "helpBtn": "helpPage"
+						}
+					]
+				}
+			]
+	
+		}
+	]
+}

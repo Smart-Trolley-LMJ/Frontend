@@ -1,0 +1,19 @@
+{
+	"QStackedWidget":[
+		{
+			"name":"mainPages",
+			"navigation":[
+				{
+					"navigationButtons":[
+						{
+							"homeBtn": "homePage",
+							"inventoryBtn": "inventoryPage",
+                            "cartBtn": "cartPage"
+						}
+					]
+				}
+			]
+	
+		}
+	]
+}

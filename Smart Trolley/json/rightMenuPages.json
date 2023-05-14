@@ -1,0 +1,18 @@
+{
+	"QStackedWidget":[
+		{
+			"name":"rightMenuPages",
+			"navigation":[
+				{
+					"navigationButtons":[
+						{
+							"profileMenuBtn": "profileMenuPage",
+							"moreMenuBtn": "moreMenuPage"
+						}
+					]
+				}
+			]
+	
+		}
+	]
+}

@@ -1,0 +1,18 @@
+{
+	"QMainWindow":[
+		{
+			"tittle":"Smart Trolley",
+			"icon":":/UI/Images/Trolley.png",
+			"frameless": true,
+			"transluscentBg": true,
+			"sizeGrip": "SizeGrip",
+			 
+			"navigation":[
+				{
+					"close": "closeBtn"
+					
+				}
+			]
+		}
+	]
+}

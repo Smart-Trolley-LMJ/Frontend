@@ -1,0 +1,9 @@
+Python 3.8,3.7 environment
+
+pip install pyqt5
+pip install pyqt5-tools
+
+pip install pipwin
+pipwin install cairocffi
+
+pip install QT-PyQt-PySide-Custom-Widgets

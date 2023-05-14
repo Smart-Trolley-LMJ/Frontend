@@ -17,9 +17,7 @@
 							"normalIcon": ":/UI/Images/White Icons/square.svg",
 							"maximizedIcon": ":/UI/Images/White Icons/copy.svg"
 						}
-					],
-					"moveWindow": "HeaderContainer",
-					"tittleBar": "HeaderContainer"
+					]
 				}
 			]
 		}
