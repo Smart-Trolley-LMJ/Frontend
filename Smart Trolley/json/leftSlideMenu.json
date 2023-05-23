@@ -16,8 +16,8 @@
 		"toggleButton": [{
 			"buttonName": "menuBtn",
 			"icons": [{
-				"whenMenuIsCollapsed": "../Images/White Icons/align-justify.svg",
-				"whenMenuIsExpanded": "../Images/White Icons/chevrons-left.svg"
+				"whenMenuIsCollapsed": "UI/Images/White Icons/align-justify.svg",
+				"whenMenuIsExpanded": "UI/Images/White Icons/chevrons-left.svg"
 			}]
 		}],
 		"menuTransitionAnimation": [{
