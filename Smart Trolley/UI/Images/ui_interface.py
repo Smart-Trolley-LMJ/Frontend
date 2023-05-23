@@ -522,12 +522,8 @@ class Ui_MainWindow(object):
         self.frame_10.setObjectName("frame_10")
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.frame_10)
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
-        self.label_15 = QtWidgets.QLabel(self.frame_10)
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.label_15.setFont(font)
-        self.label_15.setObjectName("label_15")
-        self.horizontalLayout_13.addWidget(self.label_15)
         self.horizontalLayout_12.addWidget(self.frame_10)
         self.SizeGrip = QtWidgets.QFrame(self.FooterContainer)
         self.SizeGrip.setMaximumSize(QtCore.QSize(40, 40))
@@ -579,6 +575,5 @@ class Ui_MainWindow(object):
         self.label_10.setText(_translate("MainWindow", "Profile"))
         self.label_14.setText(_translate("MainWindow", "Notification"))
         self.label_13.setText(_translate("MainWindow", "Notification Message"))
-        self.label_15.setText(_translate("MainWindow", "Copyright JML"))
 from Custom_Widgets.Widgets import QCustomSlideMenu, QCustomStackedWidget
 import resources_rc
