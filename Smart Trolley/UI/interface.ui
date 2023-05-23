@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Images/Trolley.png</normaloff>Images/Trolley.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">*{
 	border: none;
@@ -424,7 +428,7 @@
           <property name="bottomMargin">
            <number>5</number>
           </property>
-          <item alignment="Qt::AlignTop">
+          <item>
            <widget class="QFrame" name="frame_4">
             <property name="autoFillBackground">
              <bool>false</bool>

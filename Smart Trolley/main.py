@@ -4,6 +4,8 @@ from UI.Images.ui_interface import Ui_MainWindow
 # IMPORT Custom widgets
 from Custom_Widgets.Widgets import *
 
+CURRENT_WORKING_DIRECTORY = os.getcwd()
+
 
 class my_app(QMainWindow):
     def __init__(self):
@@ -34,15 +36,15 @@ class my_app(QMainWindow):
 
         
         loadJsonStyle(self, self.ui, jsonFiles = {
-        'C:\\Users\\dlsar\\Documents\\GitHub\\Frontend\\Smart Trolley\\json\\mainWindow.json',
-        'C:\\Users\\dlsar\\Documents\\GitHub\\Frontend\\Smart Trolley\\json\\leftSlideMenu.json',
-        'C:\\Users\\dlsar\\Documents\\GitHub\\Frontend\\Smart Trolley\\json\\centerMenu.json',
-        'C:\\Users\\dlsar\\Documents\\GitHub\\Frontend\\Smart Trolley\\json\\rightMenu.json',
-        'C:\\Users\\dlsar\\Documents\\GitHub\\Frontend\\Smart Trolley\\json\\notificationMenu.json',
-        'C:\\Users\\dlsar\\Documents\\GitHub\\Frontend\\Smart Trolley\\json\\mainPages.json',
-        'C:\\Users\\dlsar\\Documents\\GitHub\\Frontend\\Smart Trolley\\json\\centerMenuPages.json',
-        'C:\\Users\\dlsar\\Documents\\GitHub\\Frontend\\Smart Trolley\\json\\rightMenuPages.json',
-        'C:\\Users\\dlsar\\Documents\\GitHub\\Frontend\\Smart Trolley\\json\\buttonGroups.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/mainWindow.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/leftSlideMenu.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/centerMenu.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/rightMenu.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/notificationMenu.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/mainPages.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/centerMenuPages.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/rightMenuPages.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/buttonGroups.json',
         })
 
 
