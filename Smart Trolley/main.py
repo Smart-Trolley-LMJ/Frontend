@@ -32,6 +32,9 @@ class my_app(QMainWindow):
 
         # Collapse Right Menu Widget
         self.ui.closeNotificationBtn.clicked.connect(lambda: self.ui.PopupNotificationContainer.collapseMenu())
+
+        # Add item to cart
+        self.ui.addItemBtn.clicked.connect(self.add_item)
         
 
         
@@ -47,7 +50,13 @@ class my_app(QMainWindow):
         f'{CURRENT_WORKING_DIRECTORY}/json/buttonGroups.json',
         })
 
-
+    def add_item(self):
+        row_count = self.ui.itemTable_2.rowCount()
+        self.ui.itemTable_2.setRowCount(row_count + 1)
+        self.ui.itemTable_2.setItem(row_count, 0, QTableWidgetItem("a"))
+        self.ui.itemTable_2.setItem(row_count, 1, QTableWidgetItem("b"))
+        self.ui.itemTable_2.setItem(row_count, 2, QTableWidgetItem("c"))
+        self.ui.itemTable_2.setItem(row_count, 3, QTableWidgetItem("d"))
 
 
         

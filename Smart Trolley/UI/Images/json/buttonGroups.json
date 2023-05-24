@@ -1,0 +1,42 @@
+{
+	"QPushButtonGroup": [
+		{
+			"Buttons": [
+				"homeBtn",
+				"cartBtn",
+				"inventoryBtn"
+			],
+			"Style": [
+				{
+					"Active": "background-color: #1f232a;",
+					"NotActive": ""
+				}
+			]
+		},
+		{
+			"Buttons": [
+				"settingsBtn",
+				"infoBtn",
+				"helpBtn"
+			],
+			"Style": [
+				{
+					"Active": "background-color: #2c313c;",
+					"NotActive": ""
+				}
+			]
+		},
+		{
+			"Buttons": [
+				"moreMenuBtn",
+				"profileMenuBtn"
+			],
+			"Style": [
+				{
+					"Active": "background-color: #2c313c;",
+					"NotActive": ""
+				}
+			]
+		}
+	]
+}
