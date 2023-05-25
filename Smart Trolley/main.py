@@ -52,11 +52,20 @@ class my_app(QMainWindow):
 
     def add_item(self):
         row_count = self.ui.itemTable_2.rowCount()
+        cost = "10"
+       
         self.ui.itemTable_2.setRowCount(row_count + 1)
-        self.ui.itemTable_2.setItem(row_count, 0, QTableWidgetItem("a"))
-        self.ui.itemTable_2.setItem(row_count, 1, QTableWidgetItem("b"))
-        self.ui.itemTable_2.setItem(row_count, 2, QTableWidgetItem("c"))
-        self.ui.itemTable_2.setItem(row_count, 3, QTableWidgetItem("d"))
+        self.ui.itemTable_2.setItem(row_count, 0, QTableWidgetItem("Fantastic Bread"))
+        self.ui.itemTable_2.setItem(row_count, 1, QTableWidgetItem("2"))
+        self.ui.itemTable_2.setItem(row_count, 2, QTableWidgetItem("5"))
+        self.ui.itemTable_2.setItem(row_count, 3, QTableWidgetItem("10"))
+
+        self.calculate(cost)
+
+    def calculate(self, cost):
+        total_cost = float(self.ui.displayCost.toPlainText()) + float(cost)
+
+        self.ui.displayCost.setText(f'{total_cost}')
 
 
         
