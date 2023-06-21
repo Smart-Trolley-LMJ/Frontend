@@ -16,6 +16,13 @@
 		"menuTransitionAnimation": [{
 			"animationDuration": 500,
 			"animationEasingCurve": "Linear"
+		}],
+		"toggleButton": [{
+			"buttonName": "toggleAddbtn",
+			"icons": [{
+				"whenMenuIsCollapsed": "./UI/Images/White Icons/plus-square.svg",
+				"whenMenuIsExpanded": "./UI/Images/White Icons/x.svg"
+			}]
 		}]
 	}]
 } 

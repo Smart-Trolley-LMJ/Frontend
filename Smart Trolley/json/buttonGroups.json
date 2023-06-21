@@ -4,7 +4,8 @@
 			"Buttons": [
 				"homeBtn",
 				"cartBtn",
-				"inventoryBtn"
+				"inventoryBtn",
+				"listBtn"
 			],
 			"Style": [
 				{
@@ -18,18 +19,6 @@
 				"settingsBtn",
 				"infoBtn",
 				"helpBtn"
-			],
-			"Style": [
-				{
-					"Active": "background-color: #2c313c;",
-					"NotActive": ""
-				}
-			]
-		},
-		{
-			"Buttons": [
-				"moreMenuBtn",
-				"profileMenuBtn"
 			],
 			"Style": [
 				{

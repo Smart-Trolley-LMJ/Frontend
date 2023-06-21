@@ -14,5 +14,27 @@
 				}
 			]
 		}
-	]
+	],
+	"QSettings": [
+        {
+            "ThemeSettings": [
+                {
+                    "CustomTheme": [
+                        {
+                            "Background-color": "#1f232a",
+                            "Text-color": "#fff",
+                            "Accent-color": "#1f232a",
+                            "Theme-name": "Default-Dark",
+                            "Default-Theme": false
+                        }
+                    ]
+                }
+            ],
+            "AppSettings": {
+                "OrginizationName": "Modern UI",
+                "ApplicationName": "Modern UI Company",
+                "OrginizationDormain": "Modern UI.org"
+            }
+        }
+    ]
 }

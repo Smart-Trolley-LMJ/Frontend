@@ -1,0 +1,46 @@
+
+            //===================================================//
+            // FILE AUTO-GENERATED. PUT YOUR DEFAULT STYLES HERE. 
+            // THESE STYLES WILL OVERIDE THE THEME STYLES
+            //====================================================//
+            
+            //===================================================//
+            // END //
+            //====================================================//
+            
+            *{
+                background-color: transparent;
+                padding: 0;
+                margin: 0;
+                color: #fff;
+            }
+            
+            #centralwidget{
+                background-color: rgb(31, 35, 42);
+            }
+            #LeftMenuSubContainer{
+                background-color: rgb(22, 25, 29);
+            }
+            #LeftMenuSubContainer QPushButton{
+                text-align: left;
+                padding: 5px 10px;
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+            
+            #CenterMenuSubContainer, #RightMenuSubContainer
+            {
+                background-color: #2c313c;
+            }
+            
+            #frame_4 , #frame_8{
+                background-color: #16191d;
+                border-radius: 10px;
+            }
+            
+            #headerContainer, #FooterContainer {
+                background-color: #2c313c;
+            }
+            
+            
+            

@@ -2,13 +2,33 @@
 	"QStackedWidget":[
 		{
 			"name":"mainPages",
+			"transitionAnimation":[
+				{
+					"fade":[
+						{
+							"active": true,
+							"duration":1000,
+							"easingCurve": "OutBack"
+						}
+					],
+					"slide":[
+						{
+							"active":true,
+							"duration": 1000,
+							"direction": "horizontal",
+							"easingCurve": "OutBack"
+						}
+					]
+				}
+			],
 			"navigation":[
 				{
 					"navigationButtons":[
 						{
 							"homeBtn": "homePage",
 							"inventoryBtn": "inventoryPage",
-                            "cartBtn": "cartPage"
+                            "cartBtn": "cartPage",
+							"listBtn": "shoppingListPage"
 						}
 					]
 				}

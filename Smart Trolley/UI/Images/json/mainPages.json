@@ -8,7 +8,8 @@
 						{
 							"homeBtn": "homePage",
 							"inventoryBtn": "inventoryPage",
-                            "cartBtn": "cartPage"
+                            "cartBtn": "cartPage",
+							"listBtn": "shoppingListPage"
 						}
 					]
 				}
