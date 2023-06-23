@@ -38,6 +38,7 @@ class my_app(QMainWindow):
         f'{CURRENT_WORKING_DIRECTORY}/json/mainPages.json',
         f'{CURRENT_WORKING_DIRECTORY}/json/centerMenuPages.json',
         f'{CURRENT_WORKING_DIRECTORY}/json/buttonGroups.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/homePage.json',
         # f'{CURRENT_WORKING_DIRECTORY}/json/rightMenu.json',
         })
 

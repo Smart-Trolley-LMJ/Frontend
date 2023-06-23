@@ -1,0 +1,29 @@
+{
+    "QCard": [{
+        "cards": [
+            "card1",
+            "card2",
+            "card3",
+            "card4"
+        ],
+        "shadow":[{
+            "color": "#000",
+            "blurRadius": 10,
+            "xOffset": 0,
+            "yOffset": 0
+        }]
+    },
+    {
+        "cards": [
+            "top_products",
+            "discounts"
+        ],
+        "shadow":[{
+            "color": "#fff",
+            "blurRadius": 10,
+            "xOffset": 0,
+            "yOffset": 0
+        }]
+    }
+]
+}
