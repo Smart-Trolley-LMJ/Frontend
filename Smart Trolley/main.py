@@ -24,7 +24,7 @@ class my_app(QMainWindow):
         self.ui.closeNotificationBtn.clicked.connect(lambda: self.ui.PopupNotificationContainer.collapseMenu())
         self.ui.cancelBtn_2.clicked.connect(lambda: self.ui.PaymentContainer.collapseMenu()) 
 
-        with open(f'{CURRENT_WORKING_DIRECTORY}\json\image.json') as json_file:
+        with open(f'{CURRENT_WORKING_DIRECTORY}/json/image.json') as json_file:
             self.data = json.load(json_file)
         self.inventories = Inventories(self.data, self.ui)
         self.cart = ShoppingCart(self.ui)
