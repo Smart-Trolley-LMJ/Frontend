@@ -1,37 +1,43 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QListWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem
+from PyQt5.QtCore import QTimer
+from mfrc522 import SimpleMFRC522
 
-class ShoppingListApp(QWidget):
+class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Shopping List")
-        self.layout = QVBoxLayout()
+        self.initUI()
+        self.reader = SimpleMFRC522()
 
-        self.item_layout = QHBoxLayout()
-        self.item_label = QLabel("Item:")
-        self.item_input = QLineEdit()
-        self.add_button = QPushButton("Add")
-        self.add_button.clicked.connect(self.add_item)
+    def initUI(self):
+        self.setWindowTitle("Automatic Item Scanning")
+        self.setGeometry(100, 100, 400, 300)
 
-        self.item_layout.addWidget(self.item_label)
-        self.item_layout.addWidget(self.item_input)
-        self.item_layout.addWidget(self.add_button)
+        self.table = QTableWidget(self)
+        self.table.setColumnCount(2)
+        self.table.setHorizontalHeaderLabels(["Item ID", "Item Name"])
 
-        self.shopping_list = QListWidget()
+    def readRFID(self):
+        id, text = self.reader.read()
+        self.addItemToTable(id, text)
 
-        self.layout.addLayout(self.item_layout)
-        self.layout.addWidget(self.shopping_list)
+    def addItemToTable(self, item_id, item_name):
+        row_count = self.table.rowCount()
+        self.table.setRowCount(row_count + 1)
 
-        self.setLayout(self.layout)
+        id_item = QTableWidgetItem(str(item_id))
+        name_item = QTableWidgetItem(item_name)
 
-    def add_item(self):
-        item = self.item_input.text()
-        if item:
-            self.shopping_list.addItem(item)
-            self.item_input.clear()
+        self.table.setItem(row_count, 0, id_item)
+        self.table.setItem(row_count, 1, name_item)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    shopping_list_app = ShoppingListApp()
-    shopping_list_app.show()
+    window = MainWindow()
+    window.show()
+
+    timer = QTimer()
+    timer.timeout.connect(window.readRFID)
+    timer.start(1000)  # Scan every 1 second
+
     sys.exit(app.exec_())

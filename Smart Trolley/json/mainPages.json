@@ -28,7 +28,10 @@
 							"homeBtn": "homePage",
 							"inventoryBtn": "inventoryPage",
                             "cartBtn": "cartPage",
-							"listBtn": "shoppingListPage"
+							"listBtn": "shoppingListPage",
+							"homeCheckBtn": "cartPage",
+							"homeInvBtn": "inventoryPage",
+							"homeListBtn": "shoppingListPage"
 						}
 					]
 				}

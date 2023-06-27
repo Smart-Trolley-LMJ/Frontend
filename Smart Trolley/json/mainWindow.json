@@ -25,7 +25,7 @@
                             "Text-color": "#fff",
                             "Accent-color": "#1f232a",
                             "Theme-name": "Default-Dark",
-                            "Default-Theme": false
+                            "Default-Theme": true
                         }
                     ]
                 }

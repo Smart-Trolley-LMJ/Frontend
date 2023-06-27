@@ -3,6 +3,7 @@ from os import getcwd
 from UI.Images.ui_interface import Ui_MainWindow
 # IMPORT Custom widgets
 from Custom_Widgets.Widgets import *
+# from mfrc522 import SimpleMFRC522
 
 CURRENT_WORKING_DIRECTORY = getcwd()
 products = [{
@@ -46,6 +47,8 @@ class ShoppingCart():
         # Add item to cart
         self.ui.addItemBtn.clicked.connect(self.add_item)
         self.ui.checkoutBtn.clicked.connect(self.checkout)
+        while True:
+            print("Lorenzo")
 
     def add_item(self, name):
         row_count = self.ui.itemTable_2.rowCount()
@@ -78,6 +81,31 @@ class ShoppingCart():
         self.ui.itemTable_2.setItem(row_count, 3, QTableWidgetItem(str(cost)))
 
         self.calculate(cost)
+    
+    def read_rfid_tag(self):
+        # self.tag_id, text = self.rfid_reader.read()
+
+        row_count = self.ui.itemTable_2.rowCount()
+        name = "Bread"
+        quantity = 2
+        unit_cost = 5
+        cost = quantity * unit_cost
+
+        # Check if the item already exists in the table
+        for row in range(row_count):
+            item_name = self.ui.itemTable_2.item(row, 0).text()
+            if item_name == name:
+                # Item already exists, increment quantity and recalculate cost
+                current_quantity = int(self.ui.itemTable_2.item(row, 1).text())
+                new_quantity = current_quantity + quantity
+                self.ui.itemTable_2.setItem(row, 1, QTableWidgetItem(str(new_quantity)))
+
+                current_cost = int(self.ui.itemTable_2.item(row, 3).text())
+                new_cost = new_quantity * unit_cost
+                self.ui.itemTable_2.setItem(row, 3, QTableWidgetItem(str(new_cost)))
+
+                self.calculate(cost)
+                return
 
 
     def calculate(self, cost):
@@ -89,5 +117,7 @@ class ShoppingCart():
         self.ui.displayCost.setText(f'{0.00}')        
         dialog = DialogBox()
         dialog.exec_()
+
+    
 
 
