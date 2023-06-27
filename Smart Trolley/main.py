@@ -6,6 +6,7 @@ from inventories import Inventories
 from budget import Budget
 from cart import ShoppingCart
 from Custom_Widgets.Widgets import *
+from PyQt5.QtCore import QTimer
 
 CURRENT_WORKING_DIRECTORY = os.getcwd()
 
@@ -53,4 +54,11 @@ if __name__ == "__main__":
     ########################################################################
     window = my_app()
     window.show()
+    try:
+        timer = QTimer()
+        timer.timeout.connect(window.cart.readRFID)
+        timer.start(1000)  # Scan every 1 second
+    except:
+        pass
+
     sys.exit(app.exec_())
