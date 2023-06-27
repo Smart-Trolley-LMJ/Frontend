@@ -54,11 +54,10 @@ if __name__ == "__main__":
     ########################################################################
     window = my_app()
     window.show()
-    try:
-        timer = QTimer()
-        timer.timeout.connect(window.cart.readRFID)
-        timer.start(1000)  # Scan every 1 second
-    except:
-        pass
+
+    timer = QTimer()
+    timer.timeout.connect(window.cart.readRFID)
+    timer.start(1000)  # Scan every 1 second
+
 
     sys.exit(app.exec_())
