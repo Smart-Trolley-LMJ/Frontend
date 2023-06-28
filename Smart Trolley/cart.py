@@ -3,6 +3,7 @@ from os import getcwd
 from UI.Images.ui_interface import Ui_MainWindow
 # IMPORT Custom widgets
 from Custom_Widgets.Widgets import *
+from PyQt5.QtCore import QTimer
 # from mfrc522 import SimpleMFRC522
 
 CURRENT_WORKING_DIRECTORY = getcwd()
@@ -40,6 +41,10 @@ class DialogBox(QDialog):
         self.layout.addWidget(self.buttonBox)
         self.setLayout(self.layout)
 
+        
+
+       
+
 
 class ShoppingCart():
     def __init__(self, ui: Ui_MainWindow):
@@ -52,7 +57,12 @@ class ShoppingCart():
         except:
             pass
 
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.readRFID)
+        self.timer.start(1000)  # Scan every 1 second
+
     def readRFID(self):
+        print("Waiting for a tag")
         try:
             id, text = self.reader.read()
             self.add_item("Waakye")

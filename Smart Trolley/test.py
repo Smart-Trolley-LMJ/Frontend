@@ -36,8 +36,4 @@ if __name__ == "__main__":
     window = MainWindow()
     window.show()
 
-    timer = QTimer()
-    timer.timeout.connect(window.readRFID)
-    timer.start(1000)  # Scan every 1 second
-
     sys.exit(app.exec_())
