@@ -1,10 +1,13 @@
 import sys
 import os
 from UI.Images.ui_interface import Ui_MainWindow
-# IMPORT Custom widgets
+
 from inventories import Inventories
 from budget import Budget
 from cart import ShoppingCart
+from Model.items import StoreItems
+
+
 from Custom_Widgets.Widgets import *
 from PyQt5.QtCore import QTimer
 
@@ -25,11 +28,13 @@ class my_app(QMainWindow):
         self.ui.closeNotificationBtn.clicked.connect(lambda: self.ui.PopupNotificationContainer.collapseMenu())
         self.ui.cancelBtn_2.clicked.connect(lambda: self.ui.PaymentContainer.collapseMenu()) 
 
-        with open(f'{CURRENT_WORKING_DIRECTORY}/json/image.json') as json_file:
-            self.data = json.load(json_file)
+        
+        
+        self.items = StoreItems()
+        self.data = self.items.response_json
         self.inventories = Inventories(self.data, self.ui)
         self.cart = ShoppingCart(self.ui)
-        self.budget = Budget(self.ui)
+        self.budget = Budget(self.data, self.ui)
         
         loadJsonStyle(self, self.ui, jsonFiles = {
         f'{CURRENT_WORKING_DIRECTORY}/json/mainWindow.json',

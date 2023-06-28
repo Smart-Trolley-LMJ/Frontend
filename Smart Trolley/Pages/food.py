@@ -1,11 +1,12 @@
 import os
 from Custom_Widgets.Widgets import QWidget, QGridLayout, QLabel, QPixmap
 from UI.Images.ui_interface import Ui_MainWindow
-
+from Model.items import Product
+import json
 CURRENT_WORKING_DIRECTORY = os.getcwd()
 
 class foodPage(QWidget):
-    def __init__(self, json_data, ui):
+    def __init__(self, json_data: Product, ui):
         super(QWidget, self).__init__()
         self.ui : Ui_MainWindow = ui
         self.data = json_data
@@ -31,12 +32,9 @@ class foodPage(QWidget):
 
 
         for item in filtered_data:
-            # Get image path and label text from JSON
-            image_path = f'{CURRENT_WORKING_DIRECTORY}/UI/Images/food and drinks/{item["image_path"]}'
-            label_text = item['label']
 
             # Create QPixmap from image path
-            pixmap = QPixmap(image_path)
+            pixmap = QPixmap(item['image'])
 
             # Create QLabel for the image
             image_label = QLabel()
@@ -44,7 +42,7 @@ class foodPage(QWidget):
             self.grid.addWidget(image_label, row, column)
 
             # Create QLabel for the text
-            text_label = QLabel(label_text)
+            text_label = QLabel(json.dumps(item))
             self.grid.addWidget(text_label, row+1, column)
 
             column += 1
@@ -56,7 +54,7 @@ class foodPage(QWidget):
 
     def filter_data(self):
         search_text = self.ui.searchBar.toPlainText().lower()
-        filtered_data = [item for item in self.data if search_text in item["label"].lower()]
+        filtered_data = [item for item in self.data if search_text in item["name"].lower()]
         # print(filtered_data)
         self.display_grid(filtered_data)
         

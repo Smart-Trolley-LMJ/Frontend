@@ -1,37 +1,32 @@
 
 from os import getcwd
 from UI.Images.ui_interface import Ui_MainWindow
-# IMPORT Custom widgets
 from Custom_Widgets.Widgets import *
+from Model.items import Product
 
 CURRENT_WORKING_DIRECTORY = getcwd()
-products = [{
-    "image_path": "nutrisnax.jfif",
-    "label": "nutrisnax",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
-},
-{
-    "image_path": "coca cola.jfif",
-    "label": "Coke",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
-}]
+
 
 class Budget():
-    def __init__(self, ui: Ui_MainWindow):
+    def __init__(self,data: Product,ui: Ui_MainWindow):
         self.ui = ui
+        self.data = data
+
+        # Create autocomplete options
+        self.names = set([product['name'] for product in data ])
+        completer = QCompleter(self.names)
+        self.ui.item_edit.setCompleter(completer)
+
         # Add item to list
         self.ui.addToListBtn.clicked.connect(self.add_item)
+        
 
     def add_item(self, name):
         row_count = self.ui.shoppingTable.rowCount()
         name = self.ui.item_edit.displayText()
         quantity = int(self.ui.quantity_edit.displayText())
-        unit_cost = 5
-        cost = quantity * unit_cost
+        unit_cost = [product['price'] for product in self.data if product['name'] == name][0]
+        cost = quantity * float(unit_cost)
 
         # Check if the item already exists in the table
         for row in range(row_count):
@@ -52,7 +47,7 @@ class Budget():
         self.ui.shoppingTable.setItem(row_count, 0, QTableWidgetItem(name))
         self.ui.shoppingTable.setItem(row_count, 1, QTableWidgetItem(str(quantity)))
         self.ui.shoppingTable.setItem(row_count, 2, QTableWidgetItem(str(unit_cost)))
-        # self.ui.shoppingTable.setItem(row_count, 4, QTableWidgetItem(str(cost)))
+        self.ui.shoppingTable.setItem(row_count, 3, QTableWidgetItem(str(cost)))
 
         # Clear text boxes
         self.ui.item_edit.setText("")

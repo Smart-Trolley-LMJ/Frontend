@@ -1,39 +1,72 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem
-from PyQt5.QtCore import QTimer
-from mfrc522 import SimpleMFRC522
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QListView
+from PyQt5.QtCore import Qt, QAbstractListModel, QSortFilterProxyModel
+import json
+import requests
 
-class MainWindow(QMainWindow):
-    def __init__(self):
+
+class JSONListModel(QAbstractListModel):
+    def __init__(self, data=None):
         super().__init__()
-        self.initUI()
-        self.reader = SimpleMFRC522()
+        self.data = data or []
 
-    def initUI(self):
-        self.setWindowTitle("Automatic Item Scanning")
-        self.setGeometry(100, 100, 400, 300)
+    def rowCount(self, parent=None):
+        return len(self.data)
 
-        self.table = QTableWidget(self)
-        self.table.setColumnCount(2)
-        self.table.setHorizontalHeaderLabels(["Item ID", "Item Name"])
+    def data(self, index, role):
+        if role == Qt.DisplayRole:
+            return self.data[index.row()]
 
-    def readRFID(self):
-        id, text = self.reader.read()
-        self.addItemToTable(id, text)
+        return None
 
-    def addItemToTable(self, item_id, item_name):
-        row_count = self.table.rowCount()
-        self.table.setRowCount(row_count + 1)
 
-        id_item = QTableWidgetItem(str(item_id))
-        name_item = QTableWidgetItem(item_name)
+class SearchBar(QWidget):
+    def __init__(self, json_data):
+        super().__init__()
+        self.json_data = json_data
 
-        self.table.setItem(row_count, 0, id_item)
-        self.table.setItem(row_count, 1, name_item)
+        self.model = JSONListModel(json_data)
+        self.proxy_model = QSortFilterProxyModel()
+        self.proxy_model.setSourceModel(self.model)
 
-if __name__ == "__main__":
+        self.setup_ui()
+
+    def setup_ui(self):
+        layout = QVBoxLayout()
+
+        self.search_input = QLineEdit()
+        self.search_input.textChanged.connect(self.filter_data)
+
+        self.list_view = QListView()
+        self.list_view.setModel(self.proxy_model)
+
+        layout.addWidget(self.search_input)
+        layout.addWidget(self.list_view)
+
+        self.setLayout(layout)
+
+    def filter_data(self, keyword):
+        self.proxy_model.setFilterRegExp(keyword)
+        self.list_view.setCurrentIndex(self.proxy_model.index(0, 0))
+        self.list_view.scrollTo(self.proxy_model.index(0, 0))
+
+
+def main():
+    url = "https://smtrolley.onrender.com/inventory/get-all"
+    response = requests.get(url)
+    json_data = response.json()
+    print(json_data['products'][0])
+
+    # Create the Qt application
     app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
 
+    # Create and show the search bar widget
+    search_bar = SearchBar(json_data['products'])
+    search_bar.show()
+
+    # Execute the Qt application
     sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()

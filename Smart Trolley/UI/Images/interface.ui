@@ -805,7 +805,7 @@
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>2</number>
+                <number>3</number>
                </property>
                <widget class="QWidget" name="inventoryPage">
                 <property name="styleSheet">
@@ -2540,6 +2540,11 @@ border: none
                          <column>
                           <property name="text">
                            <string>Quantity</string>
+                          </property>
+                         </column>
+                         <column>
+                          <property name="text">
+                           <string>Unit Cost</string>
                           </property>
                          </column>
                          <column>

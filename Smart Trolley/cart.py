@@ -4,23 +4,14 @@ from UI.Images.ui_interface import Ui_MainWindow
 # IMPORT Custom widgets
 from Custom_Widgets.Widgets import *
 from PyQt5.QtCore import QTimer
-# from mfrc522 import SimpleMFRC522
+from Model.rc522 import RC522
+import random
+try:
+    from mfrc522 import SimpleMFRC522
+except:
+    pass
 
 CURRENT_WORKING_DIRECTORY = getcwd()
-products = [{
-    "image_path": "nutrisnax.jfif",
-    "label": "nutrisnax",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
-},
-{
-    "image_path": "coca cola.jfif",
-    "label": "Coke",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
-}]
 
 class DialogBox(QDialog):
     def __init__(self):
@@ -55,18 +46,17 @@ class ShoppingCart():
         try:
             self.reader = SimpleMFRC522()
         except:
-            pass
+            self.reader = RC522()
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.readRFID)
         self.timer.start(1000)  # Scan every 1 second
 
     def readRFID(self):
-        print("Waiting for a tag")
-        try:
-            id, text = self.reader.read()
-            self.add_item("Waakye")
-        except: pass 
+        id, text = self.reader.read()
+        print(id, text)
+        self.add_item("Waakye")
+        
         
 
     def add_item(self, name):
