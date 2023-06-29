@@ -3,7 +3,7 @@ from os import getcwd
 from UI.Images.ui_interface import Ui_MainWindow
 # IMPORT Custom widgets
 from Custom_Widgets.Widgets import *
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, pyqtSignal
 from Model.rc522 import RC522
 from threading import Thread
 try:
@@ -33,7 +33,17 @@ class DialogBox(QDialog):
         self.setLayout(self.layout)
 
         
+class Worker(QObject):
+    rfidDetected = pyqtSignal(str)
 
+    def start(self, fn):
+        Thread(target=self._execute, args=(fn,), daemon=True).start()
+
+    def _execute(self, fn):
+        fn(self)
+
+    def add_item(self, message):
+        self.rfidDetected.emit(message)
        
 
 
@@ -52,12 +62,16 @@ class ShoppingCart():
         # self.timer = QTimer()
         # self.timer.timeout.connect(self.read_RFID_thread)
         # self.timer.start(1000)  # Scan every 1 second
-        rfid_thread = Thread(target=self.read_RFID, daemon=True, name="RFID Read Thread")
-        rfid_thread.start()
+        rfid_worker = Worker()
+        rfid_worker.rfidDetected.connect(self.add_item)
+        
+        rfid_worker.start(self.read_RFID)
 
-    def read_RFID(self):
-        id, text = self.reader.read()
-        self.add_item('Waakye')
+    def read_RFID(self, worker: Worker):
+        while True:
+            id, text = self.reader.read()
+            worker.add_item("Waakye")
+        
 
     def add_item(self, name):
         row_count = self.ui.itemTable_2.rowCount()
