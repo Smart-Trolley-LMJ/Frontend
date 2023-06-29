@@ -5,7 +5,7 @@ from UI.Images.ui_interface import Ui_MainWindow
 from Custom_Widgets.Widgets import *
 from PyQt5.QtCore import QTimer
 from Model.rc522 import RC522
-import random
+from threading import Thread
 try:
     from mfrc522 import SimpleMFRC522
 except:
@@ -39,6 +39,7 @@ class DialogBox(QDialog):
 
 class ShoppingCart():
     def __init__(self, ui: Ui_MainWindow):
+        super().__init__()
         self.ui = ui
         # Add item to cart
         self.ui.addItemBtn.clicked.connect(lambda: self.add_item('Bread'))
@@ -48,16 +49,15 @@ class ShoppingCart():
         except:
             self.reader = RC522()
 
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.readRFID)
-        self.timer.start(1000)  # Scan every 1 second
+        # self.timer = QTimer()
+        # self.timer.timeout.connect(self.read_RFID_thread)
+        # self.timer.start(1000)  # Scan every 1 second
+        rfid_thread = Thread(target=self.read_RFID, daemon=True, name="RFID Read Thread")
+        rfid_thread.start()
 
-    def readRFID(self):
+    def read_RFID(self):
         id, text = self.reader.read()
-        print(id, text)
-        self.add_item("Waakye")
-        
-        
+        self.add_item('Waakye')
 
     def add_item(self, name):
         row_count = self.ui.itemTable_2.rowCount()

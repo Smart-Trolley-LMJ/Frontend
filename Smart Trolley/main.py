@@ -5,7 +5,9 @@ from UI.Images.ui_interface import Ui_MainWindow
 from inventories import Inventories
 from budget import Budget
 from cart import ShoppingCart
-from Model.items import StoreItems
+# from Model.items import StoreItems
+from threading import Thread
+
 
 
 from Custom_Widgets.Widgets import *
@@ -30,11 +32,11 @@ class my_app(QMainWindow):
 
         
         
-        self.items = StoreItems()
-        self.data = self.items.response_json
-        self.inventories = Inventories(self.data, self.ui)
+        # self.items = StoreItems()
+        # self.data = self.items.response_json
+        # self.inventories = Inventories(self.data, self.ui)
         self.cart = ShoppingCart(self.ui)
-        self.budget = Budget(self.data, self.ui)
+        # self.budget = Budget(self.data, self.ui)
         
         loadJsonStyle(self, self.ui, jsonFiles = {
         f'{CURRENT_WORKING_DIRECTORY}/json/mainWindow.json',
@@ -58,6 +60,9 @@ if __name__ == "__main__":
     ## 
     ########################################################################
     window = my_app()
+    # rfid_thread = Thread(target=window.cart.read_RFID, daemon=True, name="RFID Read Thread")
+    # rfid_thread.start()
+
     window.show()
 
     sys.exit(app.exec_())
