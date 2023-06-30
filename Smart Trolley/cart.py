@@ -3,8 +3,10 @@ from os import getcwd
 from UI.Images.ui_interface import Ui_MainWindow
 # IMPORT Custom widgets
 from Custom_Widgets.Widgets import *
-from PyQt5.QtCore import QTimer, pyqtSignal
+from PyQt5.QtCore import pyqtSignal
 from Model.rc522 import RC522
+import time
+import random
 from threading import Thread
 try:
     from mfrc522 import SimpleMFRC522
@@ -42,15 +44,16 @@ class Worker(QObject):
     def _execute(self, fn):
         fn(self)
 
-    def add_item(self, message):
-        self.rfidDetected.emit(message)
+    def add_item(self, name):
+        self.rfidDetected.emit(name)
        
-
+ids = []
 
 class ShoppingCart():
     def __init__(self, ui: Ui_MainWindow):
         super().__init__()
         self.ui = ui
+        self.id = 0
         # Add item to cart
         self.ui.addItemBtn.clicked.connect(lambda: self.add_item('Bread'))
         self.ui.checkoutBtn.clicked.connect(self.checkout)
@@ -58,10 +61,6 @@ class ShoppingCart():
             self.reader = SimpleMFRC522()
         except:
             self.reader = RC522()
-
-        # self.timer = QTimer()
-        # self.timer.timeout.connect(self.read_RFID_thread)
-        # self.timer.start(1000)  # Scan every 1 second
         rfid_worker = Worker()
         rfid_worker.rfidDetected.connect(self.add_item)
         
@@ -69,7 +68,8 @@ class ShoppingCart():
 
     def read_RFID(self, worker: Worker):
         while True:
-            id, text = self.reader.read()
+            self.id, text = self.reader.read()
+            time.sleep(3)
             worker.add_item("Waakye")
         
 
@@ -82,7 +82,7 @@ class ShoppingCart():
         # Check if the item already exists in the table
         for row in range(row_count):
             item_name = self.ui.itemTable_2.item(row, 0).text()
-            if item_name == name:
+            if item_name == name and self.id not in ids:
                 # Item already exists, increment quantity and recalculate cost
                 current_quantity = int(self.ui.itemTable_2.item(row, 1).text())
                 new_quantity = current_quantity + quantity
@@ -93,6 +93,7 @@ class ShoppingCart():
                 self.ui.itemTable_2.setItem(row, 3, QTableWidgetItem(str(new_cost)))
 
                 self.calculate(cost)
+                ids.append(self.id)
                 return
 
         # Item does not exist, add a new row to the table

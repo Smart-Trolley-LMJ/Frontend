@@ -1,0 +1,29 @@
+{
+	"QStackedWidget":[
+		{
+			"name":"inventoryPages",
+			"navigation":[
+				{
+					"navigationButtons":[
+						{	
+							"alcoholCardBtn": "alcoholInvPage",
+							"healthCardBtn": "healthInvPage",
+							"gadgetsCardBtn": "gadgetsInvPage",
+							"foodCardBtn": "foodInvPage",
+							"drinkCardBtn": "drinkInvPage",
+							"cosmeticCardBtn": "cosmeticsInvPage",
+							"backBtn": "mainInvPage_2",
+							"backBtn_2": "mainInvPage_2",
+							"backBtn_3": "mainInvPage_2",
+							"backBtn_4": "mainInvPage_2",
+							"backBtn_5": "mainInvPage_2",
+							"backBtn_6": "mainInvPage_2"
+							
+						}
+					]
+				}
+			]
+	
+		}
+	]
+}

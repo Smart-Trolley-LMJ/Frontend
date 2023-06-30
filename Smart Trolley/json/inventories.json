@@ -1,0 +1,30 @@
+{
+    "QCard": [{
+        "cards": [
+            "alcoholCard",
+            "healthCard_2",
+            "gadgetsCard_2",
+            "foodCard_2",
+            "drinkCard",
+            "cosmeticCard"
+        ],
+        "shadow":[{
+            "color": "#000",
+            "blurRadius": 10,
+            "xOffset": 0,
+            "yOffset": 0
+        }]
+    },
+    {
+        "cards": [
+            "top_products"
+        ],
+        "shadow":[{
+            "color": "#fff",
+            "blurRadius": 10,
+            "xOffset": 0,
+            "yOffset": 0
+        }]
+    }
+]
+}

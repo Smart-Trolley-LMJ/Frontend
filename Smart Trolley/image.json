@@ -1,0 +1,64 @@
+[{
+    "image_path": "nutrisnax.jfif",
+    "label": "nutrisnax",
+    "category": "food and drinks",
+    "location": "Aisle ",
+    "cost": "10.00"
+},
+{
+    "image_path": "UI\\Images\\food and drinks\\coca cola.jpeg",
+    "label": "Coke",
+    "category": "food and drinks",
+    "location": "Aisle ",
+    "cost": "10.00"
+},
+{
+    "image_path": "perk.jfif",
+    "label": "Perk",
+    "category": "food and drinks",
+    "location": "Aisle ",
+    "cost": "10.00"
+},
+{
+    "image_path": "richtea.jfif",
+    "label": "Rich Tea",
+    "category": "food and drinks",
+    "location": "Aisle ",
+    "cost": "10.00"
+},
+{
+    "image_path": "nutrisnax.jfif",
+    "label": "Smile",
+    "category": "food and drinks",
+    "location": "Aisle ",
+    "cost": "10.00"
+},
+{
+    "image_path": "perk.jfif",
+    "label": "frown",
+    "category": "food and drinks",
+    "location": "Aisle ",
+    "cost": "10.00"
+},
+{
+    "image_path": "richtea.jfif",
+    "label": "nutrisnax",
+    "category": "food and drinks",
+    "location": "Aisle ",
+    "cost": "10.00"
+},
+{
+    "image_path": "nutrisnax.jfif",
+    "label": "Smirnoff",
+    "category": "food and drinks",
+    "location": "Aisle ",
+    "cost": "10.00"
+},
+{
+    "image_path": "nutrisnax.jfif",
+    "label": "nutrisnax",
+    "category": "food and drinks",
+    "location": "Aisle ",
+    "cost": "10.00"
+}
+]

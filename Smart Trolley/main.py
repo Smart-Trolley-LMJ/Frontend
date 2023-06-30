@@ -5,7 +5,7 @@ from UI.Images.ui_interface import Ui_MainWindow
 from inventories import Inventories
 from budget import Budget
 from cart import ShoppingCart
-# from Model.items import StoreItems
+from Model.items import StoreItems
 from threading import Thread
 
 
@@ -32,9 +32,9 @@ class my_app(QMainWindow):
 
         
         
-        # self.items = StoreItems()
-        # self.data = self.items.response_json
-        # self.inventories = Inventories(self.data, self.ui)
+        self.items = StoreItems()
+        self.data = self.items.response_json
+        self.inventories = Inventories(self.data, self.ui)
         self.cart = ShoppingCart(self.ui)
         # self.budget = Budget(self.data, self.ui)
         
@@ -47,6 +47,8 @@ class my_app(QMainWindow):
         f'{CURRENT_WORKING_DIRECTORY}/json/centerMenuPages.json',
         f'{CURRENT_WORKING_DIRECTORY}/json/buttonGroups.json',
         f'{CURRENT_WORKING_DIRECTORY}/json/homePage.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/inventories.json',
+        f'{CURRENT_WORKING_DIRECTORY}/json/inventoryMenuPages.json',
         # f'{CURRENT_WORKING_DIRECTORY}/json/rightMenu.json',
         })
 

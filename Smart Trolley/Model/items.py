@@ -28,5 +28,5 @@ class Product(NamedTuple):
 
 # # Print the response
 # response_json = response.json()['products']
-# names = [product['name'] for product in response_json]
-# print(names)# The API endpoint
+# names = [product['category'] for product in response_json]
+# print(set(names))# The API endpoint

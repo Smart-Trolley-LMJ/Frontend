@@ -288,8 +288,27 @@
     <file>Feather Icons/zoom-in.svg</file>
     <file>Feather Icons/zoom-out.svg</file>
   </qresource>
+  <qresource prefix="inventories">
+    <file>Inventories/drugs.jpg</file>
+    <file>Inventories/otc.jpg</file>
+    <file>Inventories/painkillers.jpg</file>
+    <file>Inventories/canned foods.jpg</file>
+    <file>Inventories/canned.jpg</file>
+    <file>Inventories/champagne.jpg</file>
+    <file>Inventories/drinks.jpg</file>
+    <file>Inventories/fruits.jpg</file>
+    <file>Inventories/groceries.jpg</file>
+    <file>Inventories/Softdrinks.jpg</file>
+    <file>Inventories/beauty.jpg</file>
+    <file>Inventories/breakfast.jpg</file>
+    <file>Inventories/cosmetic.jpg</file>
+    <file>Inventories/cosmetics.jpg</file>
+    <file>Inventories/Food.jpg</file>
+    <file>Inventories/gadgets.jpg</file>
+    <file>Inventories/health.jpg</file>
+  </qresource>
   <qresource prefix="food">
-    <file>food and drinks/coca cola.jfif</file>
+    <file>food and drinks/coca cola.jpeg</file>
     <file>food and drinks/nutrisnax.jfif</file>
     <file>food and drinks/perk.jfif</file>
     <file>food and drinks/richtea.jfif</file>
