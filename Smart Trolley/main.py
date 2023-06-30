@@ -36,7 +36,7 @@ class my_app(QMainWindow):
         self.data = self.items.response_json
         self.inventories = Inventories(self.data, self.ui)
         self.cart = ShoppingCart(self.ui)
-        # self.budget = Budget(self.data, self.ui)
+        self.budget = Budget(self.data, self.ui)
         
         loadJsonStyle(self, self.ui, jsonFiles = {
         f'{CURRENT_WORKING_DIRECTORY}/json/mainWindow.json',
