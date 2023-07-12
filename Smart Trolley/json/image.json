@@ -1,64 +1,100 @@
 [{
-    "image_path": "nutrisnax.jfif",
-    "label": "nutrisnax",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
+    "name": "coke",
+    "price": 54.0,
+    "weight": 54.0,
+    "date_added": "2023-06-29T15:30:38.690993",
+    "product_id": "1.00E+00",
+    "description": "fine",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Drink"
 },
 {
-    "image_path": "coca cola.jfif",
-    "label": "Coke",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
+    "name": "coke",
+    "price": 28.0,
+    "weight": 28.0,
+    "date_added": "2023-06-29T15:30:38.910091",
+    "product_id": "2",
+    "description": "sweet",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Drink"
 },
 {
-    "image_path": "perk.jfif",
-    "label": "Perk",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
+    "name": "coke",
+    "price": 323.0,
+    "weight": 323.0,
+    "date_added": "2023-06-29T15:30:39.001643",
+    "product_id": "3",
+    "description": "sweet",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Drink"
 },
 {
-    "image_path": "richtea.jfif",
-    "label": "Rich Tea",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
+    "name": "coke",
+    "price": 434.0,
+    "weight": 434.0,
+    "date_added": "2023-06-29T15:30:39.094103",
+    "product_id": "4",
+    "description": "fast",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Drink"
 },
 {
-    "image_path": "nutrisnax.jfif",
-    "label": "Smile",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
+    "name": "omo",
+    "price": 75.0,
+    "weight": 75.0,
+    "date_added": "2023-06-29T15:30:39.183681",
+    "product_id": "5",
+    "description": "cleans",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Soap"
 },
 {
-    "image_path": "perk.jfif",
-    "label": "frown",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
+    "name": "omo",
+    "price": 89.0,
+    "weight": 89.0,
+    "date_added": "2023-06-29T15:30:39.274824",
+    "product_id": "6",
+    "description": "cleans",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Soap"
 },
 {
-    "image_path": "richtea.jfif",
-    "label": "nutrisnax",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
+    "name": "fanta",
+    "price": 23.0,
+    "weight": 39.0,
+    "date_added": "2023-06-29T15:30:39.366320",
+    "product_id": "7",
+    "description": "sweet",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Drink"
 },
 {
-    "image_path": "nutrisnax.jfif",
-    "label": "Smirnoff",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
+    "name": "fanta",
+    "price": 32.0,
+    "weight": 89.0,
+    "date_added": "2023-06-29T15:30:39.456641",
+    "product_id": "8",
+    "description": "sweet",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Drink"
 },
 {
-    "image_path": "nutrisnax.jfif",
-    "label": "nutrisnax",
-    "category": "food and drinks",
-    "location": "Aisle ",
-    "cost": "10.00"
-}
-]
+    "name": "sardine",
+    "price": 67.0,
+    "weight": 82.0,
+    "date_added": "2023-06-29T15:30:39.546274",
+    "product_id": "9",
+    "description": "tasty",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Food"
+},
+{
+    "name": "sardine",
+    "price": 93.0,
+    "weight": 53.0,
+    "date_added": "2023-06-29T15:30:39.639088",
+    "product_id": "10",
+    "description": "tasty",
+    "image": "http://smarttrolley.com/image.png",
+    "category": "Food"
+}]

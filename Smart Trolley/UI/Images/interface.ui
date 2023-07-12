@@ -1896,8 +1896,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>100</width>
-                             <height>30</height>
+                             <width>65</width>
+                             <height>16</height>
                             </rect>
                            </property>
                           </widget>
@@ -2022,8 +2022,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>100</width>
-                             <height>30</height>
+                             <width>65</width>
+                             <height>16</height>
                             </rect>
                            </property>
                           </widget>
@@ -2148,8 +2148,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>100</width>
-                             <height>30</height>
+                             <width>65</width>
+                             <height>16</height>
                             </rect>
                            </property>
                           </widget>
@@ -2274,8 +2274,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>100</width>
-                             <height>30</height>
+                             <width>65</width>
+                             <height>16</height>
                             </rect>
                            </property>
                           </widget>
@@ -2400,8 +2400,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>100</width>
-                             <height>30</height>
+                             <width>65</width>
+                             <height>16</height>
                             </rect>
                            </property>
                           </widget>
@@ -2526,8 +2526,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>100</width>
-                             <height>30</height>
+                             <width>65</width>
+                             <height>16</height>
                             </rect>
                            </property>
                           </widget>
@@ -2623,8 +2623,14 @@ QTableWidget QTableWidget::item {
 
 </string>
                             </property>
+                            <property name="inputMethodHints">
+                             <set>Qt::ImhNone</set>
+                            </property>
                             <property name="editTriggers">
                              <set>QAbstractItemView::NoEditTriggers</set>
+                            </property>
+                            <property name="selectionBehavior">
+                             <enum>QAbstractItemView::SelectRows</enum>
                             </property>
                             <column>
                              <property name="text">
@@ -2677,13 +2683,7 @@ QPushButton {
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_14">
                        <item>
-                        <widget class="QPushButton" name="addItemBtn">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>10</height>
-                          </size>
-                         </property>
+                        <widget class="QPushButton" name="deleteBtn">
                          <property name="maximumSize">
                           <size>
                            <width>16777215</width>
@@ -2694,28 +2694,10 @@ QPushButton {
                           <cursorShape>PointingHandCursor</cursorShape>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">background-color: rgb(131, 142, 162);</string>
+                          <string notr="true">background-color: rgb(158, 0, 0);</string>
                          </property>
                          <property name="text">
-                          <string>Add Item</string>
-                         </property>
-                         <property name="iconSize">
-                          <size>
-                           <width>16</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="checkable">
-                          <bool>false</bool>
-                         </property>
-                         <property name="autoDefault">
-                          <bool>false</bool>
-                         </property>
-                         <property name="default">
-                          <bool>false</bool>
-                         </property>
-                         <property name="flat">
-                          <bool>false</bool>
+                          <string>Delete Item</string>
                          </property>
                         </widget>
                        </item>
@@ -3683,6 +3665,12 @@ border: none
                        </item>
                        <item>
                         <widget class="QTableWidget" name="shoppingTable">
+                         <property name="editTriggers">
+                          <set>QAbstractItemView::NoEditTriggers</set>
+                         </property>
+                         <property name="selectionBehavior">
+                          <enum>QAbstractItemView::SelectRows</enum>
+                         </property>
                          <column>
                           <property name="text">
                            <string>Item</string>
@@ -3732,7 +3720,7 @@ QLineEdit{
 }</string>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_30">
-                    <item alignment="Qt::AlignTop">
+                    <item>
                      <widget class="QWidget" name="widget_6" native="true">
                       <layout class="QVBoxLayout" name="verticalLayout_31">
                        <item alignment="Qt::AlignHCenter">
@@ -3805,6 +3793,41 @@ padding: 5px 10px</string>
                          </property>
                          <property name="checkable">
                           <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_3">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QPushButton" name="deleteFromListBtn">
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(158, 0, 0);
+border-radius: 5px;
+padding: 5px 10px</string>
+                         </property>
+                         <property name="text">
+                          <string>Delete Item</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="resources.qrc">
+                           <normaloff>:/white /White Icons/delete.svg</normaloff>:/white /White Icons/delete.svg</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
                          </property>
                         </widget>
                        </item>

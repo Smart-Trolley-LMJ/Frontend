@@ -19,12 +19,17 @@ class Budget():
 
         # Add item to list
         self.ui.addToListBtn.clicked.connect(self.add_item)
+
+        self.ui.deleteFromListBtn.clicked.connect(self.delete_row)
         
 
-    def add_item(self, name):
+    def add_item(self):
         row_count = self.ui.shoppingTable.rowCount()
         name = self.ui.item_edit.displayText()
-        quantity = int(self.ui.quantity_edit.displayText())
+        quantity = self.ui.quantity_edit.displayText()
+        if name == '' or quantity == '':
+            return
+        quantity = int(quantity)
         unit_cost = [product['price'] for product in self.data if product['name'] == name][0]
         cost = quantity * float(unit_cost)
 
@@ -52,5 +57,13 @@ class Budget():
         # Clear text boxes
         self.ui.item_edit.setText("")
         self.ui.quantity_edit.setText("")
+
+    def delete_row(self):
+        row = self.ui.shoppingTable.currentRow()
+        self.ui.shoppingTable.setToolTipDuration(-1)
+        self.ui.shoppingTable.setToolTip('Item has been deleted')
+        self.ui.shoppingTable.removeRow(row)
+        
+
 
 
