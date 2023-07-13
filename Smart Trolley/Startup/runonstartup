@@ -1,0 +1,11 @@
+#!/bin/bash
+cd /home/smt/Frontend/Smart Trolley/
+python3 main.py
+
+chmod +x run_program.sh
+
+nano ~/.config/lxsession/LXDE-pi/autostart
+or
+nano ~/.config/lxsession/LXDE-pi/autostart
+
+@/path/to/run_program.sh

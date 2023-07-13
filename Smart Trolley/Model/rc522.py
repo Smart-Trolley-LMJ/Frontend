@@ -1,9 +1,10 @@
 import random
 import json
 
-with open("./json/image.json", "r") as file:
-        data = json.load(file)
+# with open("./json/image.json", "r") as file:
+#         data = json.load(file)
 
+data = []
 class RC522():
     def __init__(self) -> None:
         self.id = 0
