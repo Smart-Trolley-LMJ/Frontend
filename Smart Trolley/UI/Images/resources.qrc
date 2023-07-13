@@ -307,6 +307,14 @@
     <file>Inventories/gadgets.jpg</file>
     <file>Inventories/health.jpg</file>
   </qresource>
+  <qresource prefix="momo">
+    <file>Logo/vfcash.png</file>
+    <file>Logo/airtel.jpg</file>
+    <file>Logo/vodafone.png</file>
+    <file>Logo/hubtel.jpeg</file>
+    <file>Logo/hubtel-removebg-preview.png</file>
+    <file>Logo/mtnMomo.png</file>
+  </qresource>
   <qresource prefix="food">
     <file>food and drinks/coca cola.jpeg</file>
     <file>food and drinks/nutrisnax.jfif</file>
