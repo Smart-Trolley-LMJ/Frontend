@@ -72,6 +72,7 @@ class ShoppingCart():
     def execute(self, item):
         # Query database for item name with the id from the 
         item = json.loads(item)
+        self.id = item["id"]
         if self.add: self.add_item(item)
         else: self.remove_item(item)
         
