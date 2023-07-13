@@ -12,7 +12,7 @@ class RC522():
     def read(self):
         # scanned = random.choice([True,False])
         current_item = data[self.id]
-        self.text = json.dumps(current_item)
+        # self.text = json.dumps(current_item)
         self.id = self.id + 1 if self.id < 9 else 0
         print(self.id, "here")
         scanned = True

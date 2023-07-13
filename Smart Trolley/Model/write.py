@@ -3,18 +3,19 @@
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 import json
+from time import sleep
 
 reader = SimpleMFRC522()
 
-with open("../json/image.json", "r") as file:
+with open("../json/items.json", "r") as file:
         data = json.load(file)
 
 for item in data:
     try:
             item = json.dumps(item)
-            text = input('New data:')
             print("Now place your tag to write")
             reader.write(item)
+            sleep(2)
             print("Written")
     finally:
             GPIO.cleanup()
