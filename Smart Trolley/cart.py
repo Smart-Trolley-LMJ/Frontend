@@ -109,7 +109,7 @@ class ShoppingCart():
             ids.append(self.id)
             self.calculate(unit_cost)
         print(ids)
-        self.id +=1
+        
     
     def calculate(self, cost):
         total_cost = float(self.ui.displayCost.toPlainText()) + float(cost)
