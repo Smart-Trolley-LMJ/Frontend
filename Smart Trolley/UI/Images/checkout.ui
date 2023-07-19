@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>371</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,97 +18,338 @@
 color: rgb(255, 255, 255);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QWidget" name="widget" native="true">
      <property name="styleSheet">
-      <string notr="true">QFrame{
-	
-	background-color: rgb(255, 255, 0);
+      <string notr="true">
+QPushButton{
+	border: none;
 }</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="1">
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="text">
-         <string/>
+      <item row="1" column="0" alignment="Qt::AlignTop">
+       <widget class="QFrame" name="frame">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(31, 35, 42);</string>
         </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/momo/Logo/vfcash.png</normaloff>:/momo/Logo/vfcash.png</iconset>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>100</width>
-          <height>100</height>
-         </size>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
         </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>5</number>
+         </property>
+         <property name="topMargin">
+          <number>2</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>2</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Item</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Quantity</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Cost</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="pushButton_5">
-        <property name="text">
-         <string/>
+      <item row="2" column="0">
+       <widget class="QScrollArea" name="checkoutScrollAreaWidget">
+        <property name="styleSheet">
+         <string notr="true">border: none;
+background-color: rgb(255, 255, 255);
+color: rgb(22, 25, 29);</string>
         </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/momo/Logo/airtel.jpg</normaloff>:/momo/Logo/airtel.jpg</iconset>
+        <property name="widgetResizable">
+         <bool>true</bool>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>100</width>
-          <height>100</height>
-         </size>
-        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>382</width>
+           <height>142</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	
+	background-color: rgb(22, 25, 29);
+}</string>
+         </property>
+        </widget>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="text">
-         <string/>
+      <item row="3" column="0">
+       <widget class="QFrame" name="frame_2">
+        <property name="styleSheet">
+         <string notr="true">background-color: none;</string>
         </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/momo/Logo/mtnMomo.png</normaloff>:/momo/Logo/mtnMomo.png</iconset>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>100</width>
-          <height>100</height>
-         </size>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
         </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/momo/Logo/mtnMomo.png</normaloff>:/momo/Logo/mtnMomo.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>100</width>
-          <height>120</height>
-         </size>
-        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QWidget" name="widget_3" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item alignment="Qt::AlignLeft">
+             <widget class="QFrame" name="frame_3">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QLabel" name="label_16">
+                 <property name="font">
+                  <font>
+                   <pointsize>15</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Total Cost:</string>
+                 </property>
+                 <property name="textFormat">
+                  <enum>Qt::AutoText</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="paymentCostLabel">
+                 <property name="font">
+                  <font>
+                   <pointsize>15</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>0.00</string>
+                 </property>
+                 <property name="textFormat">
+                  <enum>Qt::AutoText</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="label_4">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Please enter your payment number</string>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 0, 0);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="maxLength">
+            <number>13</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="checkoutHeading">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_2" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <property name="spacing">
+             <number>10</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="proceedBtn">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(44, 49, 60);</string>
+              </property>
+              <property name="text">
+               <string>Proceed To Payment</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="cancelPaymentBtn">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(44, 49, 60);</string>
+              </property>
+              <property name="text">
+               <string>Cancel</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(31, 35, 42);</string>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
     </widget>
    </item>
   </layout>
@@ -116,38 +357,5 @@ color: rgb(255, 255, 255);</string>
  <resources>
   <include location="resources.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>Dialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>Dialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

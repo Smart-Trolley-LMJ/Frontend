@@ -2,19 +2,22 @@
 from os import getcwd
 from UI.Images.ui_interface import Ui_MainWindow
 # IMPORT Custom widgets
-from Custom_Widgets.Widgets import *
+from Custom_Widgets.Widgets import QPushButton,QMessageBox, QDialog, QTableWidgetItem,QDialogButtonBox, QVBoxLayout,QLabel
 from PyQt5.QtCore import pyqtSignal
 from Model.rc522 import RC522
 from Model.worker import Worker
 import time
-import random
+import json
 from threading import Thread
 try:
     from mfrc522 import SimpleMFRC522
 except:
     pass
+from Pages.checkoutPage import checkoutDialog
+import requests
 
 CURRENT_WORKING_DIRECTORY = getcwd()
+url = "https://smtrolley.onrender.com/"
 
 class DialogBox(QDialog):
     def __init__(self):
@@ -22,18 +25,15 @@ class DialogBox(QDialog):
         self.add = False
         self.setModal(True)
 
-        self.setWindowTitle("Proceed to Payment")
-
-        QBtn = QDialogButtonBox.Yes | QDialogButtonBox.No
-
-        self.buttonBox = QDialogButtonBox(QBtn)
-        self.buttonBox.accepted.connect(self.accept)
-        self.buttonBox.rejected.connect(self.reject)
+        self.setWindowTitle("Delete Item from Cart")
 
         self.layout = QVBoxLayout()
         message = QLabel("Please scan an item to remove from cart")
+        done_button = QPushButton("Done")
+        done_button.clicked.connect(self.close)
+        
         self.layout.addWidget(message)
-        self.layout.addWidget(self.buttonBox)
+        self.layout.addWidget(done_button)
         self.setLayout(self.layout)
 
         
@@ -42,10 +42,12 @@ class DialogBox(QDialog):
 ids = []
 
 class ShoppingCart():
-    def __init__(self, ui: Ui_MainWindow):
+    def __init__(self, ui: Ui_MainWindow, user_id):
         super().__init__()
         self.ui = ui
         self.add = True
+        self.user_id = user_id
+        self.receipt = []
         try:
             self.reader = SimpleMFRC522()
         except:
@@ -56,8 +58,8 @@ class ShoppingCart():
         rfid_worker.start(self.read_RFID)
 
         # Delete item from cart
-        # self.ui.deleteBtn.clicked.connect(lambda: self.remove_item('Bread'))
-        self.ui.deleteBtn.clicked.connect(lambda: self.delete())
+        # self.ui.deleteBtn.clicked.connect(lambda: print('Bread'))
+        self.ui.deleteBtn.clicked.connect(self.delete)
         
         # Checkout
         self.ui.checkoutBtn.clicked.connect(self.checkout)
@@ -66,12 +68,15 @@ class ShoppingCart():
     def read_RFID(self, worker: Worker):
         while True:
             self.id, text = self.reader.read()
+            a = requests.get(f'{url}inventories/{text}').content.decode('utf-8')
+            print(a)
             time.sleep(2)
-            worker.add_or_remove_item(text)
+            worker.add_or_remove_item(a)
 
     def execute(self, item):
         # Query database for item name with the id from the 
         item = json.loads(item)
+        print(item)
         self.id = item["id"]
         if self.add: self.add_item(item)
         else: self.remove_item(item)
@@ -80,7 +85,7 @@ class ShoppingCart():
     def add_item(self, item):
         print("Adding an Item")
         name = item["name"]
-        unit_cost = item["price"]
+        unit_cost = item["product_info"]["price"]
         row_count = self.ui.itemTable_2.rowCount()
 
         # Check if the item already exists in the table
@@ -116,15 +121,44 @@ class ShoppingCart():
         print(total_cost, float(cost))
 
         self.ui.displayCost.setText(f'{total_cost}')
+    
+    def get_all_table_data(self):
+        self.all_data = []
+
+        for row in range(self.ui.itemTable_2.rowCount()):
+            row_data = []
+            for col in range(self.ui.itemTable_2.columnCount()):
+                item = self.ui.itemTable_2.item(row, col)
+                if item is not None:
+                    row_data.append(item.text())
+                else:
+                    row_data.append("")
+
+            self.all_data.append(row_data)
+
 
     def checkout(self):
-        self.ui.displayCost.setText(f'{0.00}')        
-        dialog = DialogBox()
-        dialog.exec_()
+        # self.ui.displayCost.setText(f'{0.00}')
+        try:
+            
+            for id in ids:
+                self.receipt.append(
+                    {
+                        "id":id,
+                        "quantity":1
+                    }
+                ) 
+            response = requests.post(f'{url}/cart/checkout/{self.user_id}', json=self.receipt)
+            print(f'Cart Checkout: {response}') 
+            self.get_all_table_data()
+            dialog = checkoutDialog(self.all_data, self.receipt, self.user_id)
+            dialog.exec_()
+        except:
+            pass
 
     def delete(self):
         self.add = False 
-
+        print("Here")
         dialog = DialogBox()
         if dialog.exec_() == QDialog.Accepted:
             self.add = True 
@@ -134,7 +168,7 @@ class ShoppingCart():
         row_count = self.ui.itemTable_2.rowCount()
         print("Removing Item")
         name = item["name"]
-        unit_cost = item["price"]
+        unit_cost = item["product_info"]["price"]
         if self.id in ids: ####  Use dictionary key value instead
             for row in range(row_count):
                 item_name = self.ui.itemTable_2.item(row, 0).text()

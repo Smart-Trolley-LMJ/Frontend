@@ -1,11 +1,13 @@
 import sys
 import os
+import requests
+import json
 from UI.Images.ui_interface import Ui_MainWindow
 
 from inventories import Inventories
 from budget import Budget
 from cart import ShoppingCart
-from Model.items import StoreItems
+# from Model.items import StoreItems
 from threading import Thread
 
 
@@ -19,10 +21,13 @@ CURRENT_WORKING_DIRECTORY = os.getcwd()
 class my_app(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
+        url = "https://smtrolley.onrender.com/users/"
+        self.user_id = requests.get(url).content.decode('utf-8')
+        self.user_id = json.loads(self.user_id)['id']
         self.ui = Ui_MainWindow()
         
         self.ui.setupUi(self)
-    
+        
         self.ui.settingsBtn.clicked.connect(lambda: self.ui.CenterMenuContainer.expandMenu())
         self.ui.infoBtn.clicked.connect(lambda: self.ui.CenterMenuContainer.expandMenu())
         self.ui.helpBtn.clicked.connect(lambda: self.ui.CenterMenuContainer.expandMenu())
@@ -32,11 +37,11 @@ class my_app(QMainWindow):
 
         
         
-        self.items = StoreItems()
-        self.data = self.items.response_json
-        self.inventories = Inventories(self.data, self.ui)
-        self.cart = ShoppingCart(self.ui)
-        self.budget = Budget(self.data, self.ui)
+        # self.items = StoreItems()
+        # self.data = self.items.response_json
+        # self.inventories = Inventories(self.data, self.ui)
+        self.cart = ShoppingCart(self.ui, self.user_id)
+        # self.budget = Budget(self.data, self.ui)
         
         loadJsonStyle(self, self.ui, jsonFiles = {
         f'{CURRENT_WORKING_DIRECTORY}/json/mainWindow.json',

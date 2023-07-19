@@ -1,48 +1,45 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QPushButton, QMainWindow
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton
 
-
-class MyDialog(QDialog):
-    def __init__(self, parent=None):
-        super(MyDialog, self).__init__(parent)
-        self.setWindowTitle("Dialog Box")
-        self.setModal(True)
-
-        layout = QVBoxLayout()
-        self.label = QLabel("Dialog Box is displayed")
-        layout.addWidget(self.label)
-
-        self.close_button = QPushButton("Close Dialog")
-        self.close_button.clicked.connect(self.accept)
-        layout.addWidget(self.close_button)
-
-        self.setLayout(layout)
-
-
-class MainWindow(QMainWindow):
+class MyWidget(QWidget):
     def __init__(self):
-        super(MainWindow, self).__init__()
-        self.setWindowTitle("Main Window")
+        super().__init__()
+        self.initUI()
 
-        self.add_value = True
+    def initUI(self):
+        self.layout = QVBoxLayout()
 
-        button = QPushButton("Open Dialog")
-        button.clicked.connect(self.open_dialog)
-        self.setCentralWidget(button)
+        label = QLabel("Original Label")
+        self.layout.addWidget(label)
 
-    def open_dialog(self):
-        self.add_value = False  # Set add_value to False
+        clear_button = QPushButton("Clear Layout")
+        clear_button.clicked.connect(self.clear_layout)
+        self.layout.addWidget(clear_button)
 
-        dialog = MyDialog(self)
-        if dialog.exec_() == QDialog.Accepted:
-            self.add_value = True  # Set add_value back to True
+        self.setLayout(self.layout)
 
-        # Optional: Display add_value state after the dialog is closed
-        print("add_value:", self.add_value)
+    def clear_layout(self):
+        for i in reversed(range(self.layout.count())):
+            item = self.layout.itemAt(i)
+            if item.widget():
+                item.widget().deleteLater()
+            elif item.layout():
+                self.clear_layout_recursive(item.layout())
+            self.layout.removeItem(item)
 
+    def clear_layout_recursive(self, layout):
+        for i in reversed(range(layout.count())):
+            item = layout.itemAt(i)
+            if item.widget():
+                item.widget().deleteLater()
+            elif item.layout():
+                self.clear_layout_recursive(item.layout())
+            layout.removeItem(item)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MainWindow()
+
+    window = MyWidget()
     window.show()
+
     sys.exit(app.exec_())

@@ -995,20 +995,6 @@ border: none
                              </property>
                             </spacer>
                            </item>
-                           <item alignment="Qt::AlignRight">
-                            <widget class="QLabel" name="label_62">
-                             <property name="font">
-                              <font>
-                               <pointsize>10</pointsize>
-                               <weight>75</weight>
-                               <bold>true</bold>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>What's Trending</string>
-                             </property>
-                            </widget>
-                           </item>
                           </layout>
                          </widget>
                         </item>
@@ -1840,45 +1826,6 @@ border: none
                              </property>
                             </spacer>
                            </item>
-                           <item alignment="Qt::AlignRight">
-                            <widget class="QFrame" name="frame_33">
-                             <property name="styleSheet">
-                              <string notr="true">border-bottom: 1px solid rgb(44, 49, 60)</string>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::StyledPanel</enum>
-                             </property>
-                             <property name="frameShadow">
-                              <enum>QFrame::Raised</enum>
-                             </property>
-                             <layout class="QHBoxLayout" name="horizontalLayout_42">
-                              <item>
-                               <widget class="QLabel" name="label_67">
-                                <property name="text">
-                                 <string>Sort By</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item>
-                               <widget class="QPushButton" name="sortBtn_2">
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="resources.qrc">
-                                  <normaloff>:/white /White Icons/sliders.svg</normaloff>:/white /White Icons/sliders.svg</iconset>
-                                </property>
-                                <property name="iconSize">
-                                 <size>
-                                  <width>24</width>
-                                  <height>24</height>
-                                 </size>
-                                </property>
-                               </widget>
-                              </item>
-                             </layout>
-                            </widget>
-                           </item>
                           </layout>
                          </widget>
                         </item>
@@ -1896,8 +1843,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>65</width>
-                             <height>16</height>
+                             <width>491</width>
+                             <height>174</height>
                             </rect>
                            </property>
                           </widget>
@@ -1966,45 +1913,6 @@ border: none
                              </property>
                             </spacer>
                            </item>
-                           <item alignment="Qt::AlignRight">
-                            <widget class="QFrame" name="frame_34">
-                             <property name="styleSheet">
-                              <string notr="true">border-bottom: 1px solid rgb(44, 49, 60)</string>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::StyledPanel</enum>
-                             </property>
-                             <property name="frameShadow">
-                              <enum>QFrame::Raised</enum>
-                             </property>
-                             <layout class="QHBoxLayout" name="horizontalLayout_44">
-                              <item>
-                               <widget class="QLabel" name="label_71">
-                                <property name="text">
-                                 <string>Sort By</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item>
-                               <widget class="QPushButton" name="sortBtn_3">
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="resources.qrc">
-                                  <normaloff>:/white /White Icons/sliders.svg</normaloff>:/white /White Icons/sliders.svg</iconset>
-                                </property>
-                                <property name="iconSize">
-                                 <size>
-                                  <width>24</width>
-                                  <height>24</height>
-                                 </size>
-                                </property>
-                               </widget>
-                              </item>
-                             </layout>
-                            </widget>
-                           </item>
                           </layout>
                          </widget>
                         </item>
@@ -2022,8 +1930,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>65</width>
-                             <height>16</height>
+                             <width>491</width>
+                             <height>172</height>
                             </rect>
                            </property>
                           </widget>
@@ -2092,45 +2000,6 @@ border: none
                              </property>
                             </spacer>
                            </item>
-                           <item alignment="Qt::AlignRight">
-                            <widget class="QFrame" name="frame_37">
-                             <property name="styleSheet">
-                              <string notr="true">border-bottom: 1px solid rgb(44, 49, 60)</string>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::StyledPanel</enum>
-                             </property>
-                             <property name="frameShadow">
-                              <enum>QFrame::Raised</enum>
-                             </property>
-                             <layout class="QHBoxLayout" name="horizontalLayout_50">
-                              <item>
-                               <widget class="QLabel" name="label_78">
-                                <property name="text">
-                                 <string>Sort By</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item>
-                               <widget class="QPushButton" name="sortBtn_6">
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="resources.qrc">
-                                  <normaloff>:/white /White Icons/sliders.svg</normaloff>:/white /White Icons/sliders.svg</iconset>
-                                </property>
-                                <property name="iconSize">
-                                 <size>
-                                  <width>24</width>
-                                  <height>24</height>
-                                 </size>
-                                </property>
-                               </widget>
-                              </item>
-                             </layout>
-                            </widget>
-                           </item>
                           </layout>
                          </widget>
                         </item>
@@ -2148,8 +2017,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>65</width>
-                             <height>16</height>
+                             <width>491</width>
+                             <height>172</height>
                             </rect>
                            </property>
                           </widget>
@@ -2218,45 +2087,6 @@ border: none
                              </property>
                             </spacer>
                            </item>
-                           <item alignment="Qt::AlignRight">
-                            <widget class="QFrame" name="frame_35">
-                             <property name="styleSheet">
-                              <string notr="true">border-bottom: 1px solid rgb(44, 49, 60)</string>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::StyledPanel</enum>
-                             </property>
-                             <property name="frameShadow">
-                              <enum>QFrame::Raised</enum>
-                             </property>
-                             <layout class="QHBoxLayout" name="horizontalLayout_46">
-                              <item>
-                               <widget class="QLabel" name="label_74">
-                                <property name="text">
-                                 <string>Sort By</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item>
-                               <widget class="QPushButton" name="sortBtn_4">
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="resources.qrc">
-                                  <normaloff>:/white /White Icons/sliders.svg</normaloff>:/white /White Icons/sliders.svg</iconset>
-                                </property>
-                                <property name="iconSize">
-                                 <size>
-                                  <width>24</width>
-                                  <height>24</height>
-                                 </size>
-                                </property>
-                               </widget>
-                              </item>
-                             </layout>
-                            </widget>
-                           </item>
                           </layout>
                          </widget>
                         </item>
@@ -2274,8 +2104,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>65</width>
-                             <height>16</height>
+                             <width>491</width>
+                             <height>172</height>
                             </rect>
                            </property>
                           </widget>
@@ -2344,45 +2174,6 @@ border: none
                              </property>
                             </spacer>
                            </item>
-                           <item alignment="Qt::AlignRight">
-                            <widget class="QFrame" name="frame_36">
-                             <property name="styleSheet">
-                              <string notr="true">border-bottom: 1px solid rgb(44, 49, 60)</string>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::StyledPanel</enum>
-                             </property>
-                             <property name="frameShadow">
-                              <enum>QFrame::Raised</enum>
-                             </property>
-                             <layout class="QHBoxLayout" name="horizontalLayout_48">
-                              <item>
-                               <widget class="QLabel" name="label_76">
-                                <property name="text">
-                                 <string>Sort By</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item>
-                               <widget class="QPushButton" name="sortBtn_5">
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="resources.qrc">
-                                  <normaloff>:/white /White Icons/sliders.svg</normaloff>:/white /White Icons/sliders.svg</iconset>
-                                </property>
-                                <property name="iconSize">
-                                 <size>
-                                  <width>24</width>
-                                  <height>24</height>
-                                 </size>
-                                </property>
-                               </widget>
-                              </item>
-                             </layout>
-                            </widget>
-                           </item>
                           </layout>
                          </widget>
                         </item>
@@ -2400,8 +2191,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>65</width>
-                             <height>16</height>
+                             <width>491</width>
+                             <height>172</height>
                             </rect>
                            </property>
                           </widget>
@@ -2470,45 +2261,6 @@ border: none
                              </property>
                             </spacer>
                            </item>
-                           <item alignment="Qt::AlignRight">
-                            <widget class="QFrame" name="frame_38">
-                             <property name="styleSheet">
-                              <string notr="true">border-bottom: 1px solid rgb(44, 49, 60)</string>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::StyledPanel</enum>
-                             </property>
-                             <property name="frameShadow">
-                              <enum>QFrame::Raised</enum>
-                             </property>
-                             <layout class="QHBoxLayout" name="horizontalLayout_52">
-                              <item>
-                               <widget class="QLabel" name="label_80">
-                                <property name="text">
-                                 <string>Sort By</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item>
-                               <widget class="QPushButton" name="sortBtn_7">
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="resources.qrc">
-                                  <normaloff>:/white /White Icons/sliders.svg</normaloff>:/white /White Icons/sliders.svg</iconset>
-                                </property>
-                                <property name="iconSize">
-                                 <size>
-                                  <width>24</width>
-                                  <height>24</height>
-                                 </size>
-                                </property>
-                               </widget>
-                              </item>
-                             </layout>
-                            </widget>
-                           </item>
                           </layout>
                          </widget>
                         </item>
@@ -2526,8 +2278,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>65</width>
-                             <height>16</height>
+                             <width>491</width>
+                             <height>172</height>
                             </rect>
                            </property>
                           </widget>
@@ -3172,6 +2924,18 @@ p, li { white-space: pre-wrap; }
                        <property name="spacing">
                         <number>6</number>
                        </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
                        <item alignment="Qt::AlignTop">
                         <widget class="QFrame" name="frame_15">
                          <property name="frameShape">
@@ -3195,27 +2959,6 @@ p, li { white-space: pre-wrap; }
                             </property>
                             <property name="text">
                              <string>Top Selling Products</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item alignment="Qt::AlignRight">
-                           <widget class="QPushButton" name="pushButton_3">
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(131, 142, 162);
-border-radius: 10px</string>
-                            </property>
-                            <property name="text">
-                             <string>View More</string>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="resources.qrc">
-                              <normaloff>:/white /White Icons/arrow-right.svg</normaloff>:/white /White Icons/arrow-right.svg</iconset>
-                            </property>
-                            <property name="iconSize">
-                             <size>
-                              <width>24</width>
-                              <height>24</height>
-                             </size>
                             </property>
                            </widget>
                           </item>
@@ -3249,19 +2992,6 @@ border: none
                              </font>
                             </property>
                             <property name="text">
-                             <string>Price</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="1">
-                           <widget class="QLabel" name="label_22">
-                            <property name="font">
-                             <font>
-                              <weight>75</weight>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="text">
                              <string>Product</string>
                             </property>
                            </widget>
@@ -3279,6 +3009,19 @@ border: none
                             </property>
                            </widget>
                           </item>
+                          <item row="0" column="1">
+                           <widget class="QLabel" name="label_22">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Price</string>
+                            </property>
+                           </widget>
+                          </item>
                          </layout>
                         </widget>
                        </item>
@@ -3289,6 +3032,11 @@ border: none
                            <horstretch>0</horstretch>
                            <verstretch>0</verstretch>
                           </sizepolicy>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                          </font>
                          </property>
                          <property name="frameShape">
                           <enum>QFrame::StyledPanel</enum>
@@ -3305,20 +3053,27 @@ border: none
                           </property>
                           <item row="0" column="1">
                            <widget class="QLabel" name="label_29">
+                            <property name="font">
+                             <font>
+                              <pointsize>10</pointsize>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
                             <property name="text">
                              <string>GHC 10.00</string>
                             </property>
                            </widget>
                           </item>
-                          <item row="1" column="2">
-                           <widget class="QLabel" name="label_30">
-                            <property name="text">
-                             <string>IT Accessories</string>
-                            </property>
-                           </widget>
-                          </item>
                           <item row="1" column="0">
                            <widget class="QLabel" name="label_31">
+                            <property name="font">
+                             <font>
+                              <pointsize>10</pointsize>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
                             <property name="text">
                              <string>AMD Microchip</string>
                             </property>
@@ -3326,43 +3081,15 @@ border: none
                           </item>
                           <item row="0" column="0">
                            <widget class="QLabel" name="label_32">
+                            <property name="font">
+                             <font>
+                              <pointsize>10</pointsize>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
                             <property name="text">
                              <string>Milk</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="2" column="1">
-                           <widget class="QLabel" name="label_33">
-                            <property name="text">
-                             <string>GHC 150.00</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="2" column="2">
-                           <widget class="QLabel" name="label_34">
-                            <property name="text">
-                             <string>Clothes</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="2">
-                           <widget class="QLabel" name="label_35">
-                            <property name="text">
-                             <string>Food Items</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="1" column="1">
-                           <widget class="QLabel" name="label_36">
-                            <property name="text">
-                             <string>GHC 200.00</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="2" column="0">
-                           <widget class="QLabel" name="label_37">
-                            <property name="text">
-                             <string>LV Shirt</string>
                             </property>
                            </widget>
                           </item>
@@ -3381,6 +3108,48 @@ border: none
                              </size>
                             </property>
                            </spacer>
+                          </item>
+                          <item row="0" column="2">
+                           <widget class="QLabel" name="label_30">
+                            <property name="font">
+                             <font>
+                              <pointsize>10</pointsize>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>IT Accessories</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="1">
+                           <widget class="QLabel" name="label_33">
+                            <property name="font">
+                             <font>
+                              <pointsize>10</pointsize>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>GHC 150.00</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="2">
+                           <widget class="QLabel" name="label_34">
+                            <property name="font">
+                             <font>
+                              <pointsize>10</pointsize>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Clothes</string>
+                            </property>
+                           </widget>
                           </item>
                          </layout>
                         </widget>
@@ -3421,7 +3190,7 @@ border: none
                         </widget>
                        </item>
                        <item>
-                        <widget class="QFrame" name="frame_19">
+                        <widget class="QFrame" name="discountFrame">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                            <horstretch>0</horstretch>
@@ -3435,6 +3204,21 @@ border: none
                           <enum>QFrame::Raised</enum>
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_34">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
                           <item>
                            <widget class="QFrame" name="frame_20">
                             <property name="frameShape">
@@ -3472,120 +3256,6 @@ border: none
                              </item>
                              <item>
                               <widget class="QLabel" name="label_41">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="pixmap">
-                                <pixmap resource="resources.qrc">:/white /White Icons/cloud-lightning.svg</pixmap>
-                               </property>
-                               <property name="scaledContents">
-                                <bool>true</bool>
-                               </property>
-                              </widget>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QFrame" name="frame_21">
-                            <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                             <enum>QFrame::Raised</enum>
-                            </property>
-                            <layout class="QHBoxLayout" name="horizontalLayout_27">
-                             <item>
-                              <widget class="QLabel" name="label_42">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>50</width>
-                                 <height>50</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="pixmap">
-                                <pixmap>Logo/Nestle.png</pixmap>
-                               </property>
-                               <property name="scaledContents">
-                                <bool>true</bool>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_43">
-                               <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;NestSale&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_44">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="pixmap">
-                                <pixmap resource="resources.qrc">:/white /White Icons/cloud-lightning.svg</pixmap>
-                               </property>
-                               <property name="scaledContents">
-                                <bool>true</bool>
-                               </property>
-                              </widget>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QFrame" name="frame_23">
-                            <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                             <enum>QFrame::Raised</enum>
-                            </property>
-                            <layout class="QHBoxLayout" name="horizontalLayout_28">
-                             <item>
-                              <widget class="QLabel" name="label_45">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>50</width>
-                                 <height>50</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="pixmap">
-                                <pixmap>Logo/Nestle.png</pixmap>
-                               </property>
-                               <property name="scaledContents">
-                                <bool>true</bool>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_46">
-                               <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;NestSale&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_47">
                                <property name="maximumSize">
                                 <size>
                                  <width>30</width>
@@ -3811,6 +3481,9 @@ padding: 5px 10px</string>
                        </item>
                        <item alignment="Qt::AlignHCenter">
                         <widget class="QPushButton" name="deleteFromListBtn">
+                         <property name="toolTip">
+                          <string/>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">background-color: rgb(158, 0, 0);
 border-radius: 5px;
