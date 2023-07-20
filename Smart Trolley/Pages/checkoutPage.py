@@ -25,7 +25,7 @@ class checkoutDialog(QDialog):
         self.user_id = user_id
         self.receipt = receipt
         self.data = array_data
-        self.url = "https://smtrolley.onrender.com/cart/checkout/"
+        self.url = "https://smtrolley.onrender.com/payment/"
         # self.ui.foodScrollArea.setLayout(self.grid)
         self.ui.setupUi(self)
         self.grid = QGridLayout()
@@ -63,7 +63,10 @@ class checkoutDialog(QDialog):
             row += 1
         
     def issue_payment(self):
-        response = requests.post(f'{self.url}{self.user_id}',json=self.receipt).content
-        print(response)
+        response = requests.get(f'{self.url}{self.user_id}', json= 
+                                {
+                                    "mobile_number": self.ui.lineEdit.text()
+                                } ).content
+        print(f'{response}')
 
         

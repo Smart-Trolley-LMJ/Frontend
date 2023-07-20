@@ -1,45 +1,38 @@
+from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QLineEdit
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton
-
-class MyWidget(QWidget):
+from virtual_keyboard import VirtualKeyboard
+class MyMainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.initUI()
+        self.init_ui()
 
-    def initUI(self):
-        self.layout = QVBoxLayout()
+    def init_ui(self):
+        self.setGeometry(100, 100, 800, 600)
+        central_widget = QWidget(self)
+        self.setCentralWidget(central_widget)
 
-        label = QLabel("Original Label")
-        self.layout.addWidget(label)
+        vbox = QVBoxLayout()
+        self.input_field1 = QLineEdit()
+        self.input_field2 = QLineEdit()
 
-        clear_button = QPushButton("Clear Layout")
-        clear_button.clicked.connect(self.clear_layout)
-        self.layout.addWidget(clear_button)
+        vbox.addWidget(self.input_field1)
+        vbox.addWidget(self.input_field2)
 
-        self.setLayout(self.layout)
+        central_widget.setLayout(vbox)
 
-    def clear_layout(self):
-        for i in reversed(range(self.layout.count())):
-            item = self.layout.itemAt(i)
-            if item.widget():
-                item.widget().deleteLater()
-            elif item.layout():
-                self.clear_layout_recursive(item.layout())
-            self.layout.removeItem(item)
+        self.virtual_keyboard = VirtualKeyboard()
+        self.input_field1.installEventFilter(self)
+        self.input_field2.installEventFilter(self)
 
-    def clear_layout_recursive(self, layout):
-        for i in reversed(range(layout.count())):
-            item = layout.itemAt(i)
-            if item.widget():
-                item.widget().deleteLater()
-            elif item.layout():
-                self.clear_layout_recursive(item.layout())
-            layout.removeItem(item)
+    def eventFilter(self, obj, event):
+        if event.type() == 2 and (obj == self.input_field1 or obj == self.input_field2):
+            self.virtual_keyboard.line_edit = obj
+            self.virtual_keyboard.show()
+            return True
+        return super().eventFilter(obj, event)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QApplication(sys.argv)
-
-    window = MyWidget()
+    window = MyMainWindow()
     window.show()
-
     sys.exit(app.exec_())

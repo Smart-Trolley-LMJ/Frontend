@@ -148,8 +148,8 @@ class ShoppingCart():
                         "quantity":1
                     }
                 ) 
-            response = requests.post(f'{url}/cart/checkout/{self.user_id}', json=self.receipt)
-            print(f'Cart Checkout: {response}') 
+            response = requests.post(f'{url}cart/checkout/{self.user_id}', json=self.receipt)
+            print(f'Cart Checkout: {response.content} \n user_id:{self.user_id}') 
             self.get_all_table_data()
             dialog = checkoutDialog(self.all_data, self.receipt, self.user_id)
             dialog.exec_()
