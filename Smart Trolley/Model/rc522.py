@@ -9,14 +9,29 @@ class RC522():
     def __init__(self) -> None:
         self.id = -1
         self.isscanned = False
-        self.data = ["003b5337-2b33-4249-a183-3c845508878f",
-"03c44514-48a6-4c07-bfbd-d54d8c0418ba",
-"0755edda-f246-459a-90e9-7c43ddf90fb2",
-"0e03a34a-3e90-48f6-8dfd-446c1c9fd71c",
-"0e356799-ce6b-456c-9b9f-e220f22b0b7d",
-"101dbae3-0697-4f9f-ae5b-ba8817c9cd18",
+        
+
+
+
+
+
+# 7bb9fc34-be0d-4c1d-b07f-d3f53dbf4cad
+# a872b89f-fd6c-43b4-96cf-885450135449
+# ba137151-25c1-4460-af60-7823add63263
+# c342cf11-4d81-4427-8c95-edc3d28f8e88
+# c545824d-80d0-49d8-8693-8a0859e3961c
+# ee11fda6-f763-49f7-97c5-566ede0fbd36
+
+        self.data = ["ddc2e4d7-9de6-4fe1-a3bb-08217598a08d"
+                     ,"b9e5e9c3-cc5c-4d59-9355-ce4f8065f69c",
+"18aa126d-ea8a-432a-adf7-84285d3f3daf",
+"52fed6b3-8ff2-43c1-ad0f-c1c61ecf1b13",
+"780e7534-62fb-4c55-acc6-166e57b7ada8",
+"6cee019c-b5b6-41c1-a542-6c160370de30",
+"79ec490a-5ea6-4c76-86c8-7b795106d8e0",
 "143846de-2f57-42d9-896e-bc4eec4864eb",
-"16e7d259-450b-4ad3-8183-1f5d93563bac",]
+"16e7d259-450b-4ad3-8183-1f5d93563bac",
+]
 
     def read(self):
         # scanned = random.choice([True,False])

@@ -805,7 +805,7 @@
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>2</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="inventoryPage">
                 <property name="styleSheet">
@@ -1010,7 +1010,7 @@ border: none
                            <property name="geometry">
                             <rect>
                              <x>0</x>
-                             <y>0</y>
+                             <y>-20</y>
                              <width>690</width>
                              <height>399</height>
                             </rect>
@@ -1484,7 +1484,7 @@ background-color: rgb(255, 255, 255);
                                      <string/>
                                     </property>
                                     <property name="pixmap">
-                                     <pixmap resource="resources.qrc">:/inventories/Inventories/breakfast.jpg</pixmap>
+                                     <pixmap resource="resources.qrc">:/inventories/Inventories/canned.jpg</pixmap>
                                     </property>
                                     <property name="scaledContents">
                                      <bool>true</bool>
@@ -1513,7 +1513,7 @@ background-color: rgb(255, 255, 255);
                                      </font>
                                     </property>
                                     <property name="text">
-                                     <string>Beverages</string>
+                                     <string>Food Items</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -2070,7 +2070,7 @@ border: none
                               </font>
                              </property>
                              <property name="text">
-                              <string>Food And Groceries</string>
+                              <string>Food Items</string>
                              </property>
                             </widget>
                            </item>
@@ -2470,6 +2470,12 @@ QPushButton {
                          <layout class="QVBoxLayout" name="verticalLayout_15">
                           <item alignment="Qt::AlignHCenter">
                            <widget class="QLabel" name="costLabel">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
                             <property name="text">
                              <string>TOTAL COST</string>
                             </property>
@@ -2583,6 +2589,12 @@ p, li { white-space: pre-wrap; }
                          <layout class="QVBoxLayout" name="verticalLayout_19">
                           <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
                            <widget class="QLabel" name="label_16">
+                            <property name="font">
+                             <font>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
                             <property name="text">
                              <string>CHECKOUT</string>
                             </property>
@@ -2601,6 +2613,10 @@ p, li { white-space: pre-wrap; }
                               <width>16777215</width>
                               <height>25</height>
                              </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">
+background-color: rgb(22, 25, 29);</string>
                             </property>
                             <property name="text">
                              <string/>

@@ -2,26 +2,46 @@
 from os import getcwd
 from UI.Images.ui_interface import Ui_MainWindow
 from Custom_Widgets.Widgets import *
+from virtual_keyboard import VirtualKeyboard
+from virtual_numpad import VirtualNumpad
 from Model.items import Product
 
 CURRENT_WORKING_DIRECTORY = getcwd()
 
 
-class Budget():
+class Budget(QWidget):
     def __init__(self,data: Product,ui: Ui_MainWindow):
+        super().__init__()
         self.ui = ui
-        self.data = data
+        # self.data = data
 
         # Create autocomplete options
-        self.names = set([product['name'] for product in data ])
-        completer = QCompleter(self.names)
-        self.ui.item_edit.setCompleter(completer)
+        # self.names = set([product['name'] for product in data ])
+        # completer = QCompleter(self.names)
+        # self.ui.item_edit.setCompleter(completer)
 
         # Add item to list
         self.ui.addToListBtn.clicked.connect(self.add_item)
 
         self.ui.deleteFromListBtn.clicked.connect(self.delete_row)
-        
+
+        #Pop Up Keyboard
+        self.keyboard = VirtualKeyboard()
+        self.ui.item_edit.installEventFilter(self)
+
+        self.numpad = VirtualNumpad()
+        self.ui.quantity_edit.installEventFilter(self)
+    
+    def eventFilter(self, obj, event):
+        if event.type() == 2:
+            if obj == self.ui.item_edit:
+                self.keyboard.line_edit = obj
+                self.keyboard.show()
+            elif obj == self.ui.quantity_edit:
+                self.numpad.line_edit = obj
+                self.numpad.show()
+            return True
+        return super().eventFilter(obj, event)
 
     def add_item(self):
         row_count = self.ui.shoppingTable.rowCount()

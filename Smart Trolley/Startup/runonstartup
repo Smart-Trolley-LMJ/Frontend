@@ -1,11 +1,13 @@
 #!/bin/bash
-cd /home/smt/Frontend/Smart Trolley/
-python3 main.py
+sleep 5  # Add a small delay to ensure the desktop environment has fully loaded
+python3 /path/to/your/pyqt5_app.py  # Replace with the correct path to your PyQt5 application's script
 
-chmod +x run_program.sh
+chmod +x /path/to/your/start_my_app.sh
 
 nano ~/.config/lxsession/LXDE-pi/autostart
-or
-nano ~/.config/lxsession/LXDE-pi/autostart
 
-@/path/to/run_program.sh
+@/path/to/your/start_my_app.sh
+
+sudo reboot
+
+

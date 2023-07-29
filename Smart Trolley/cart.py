@@ -13,7 +13,7 @@ try:
     from mfrc522 import SimpleMFRC522
 except:
     pass
-from Pages.checkoutPage import checkoutDialog
+from Pages.cart.checkoutPage import checkoutDialog
 import requests
 
 CURRENT_WORKING_DIRECTORY = getcwd()

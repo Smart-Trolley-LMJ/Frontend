@@ -1,39 +1,55 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLineEdit, QHBoxLayout
+from PyQt5.QtWidgets import QDialog, QLineEdit, QApplication
+from PyQt5.QtCore import Qt, QEvent
+from UI.Images.keyboard import Ui_Keyboard
 
-class VirtualKeyboard(QWidget):
+class VirtualKeyboard(QDialog):
     def __init__(self):
         super().__init__()
-        self.init_ui()
-
-    def init_ui(self):
-        vbox = QVBoxLayout()
+        self.ui = Ui_Keyboard()
+        self.ui.setupUi(self)
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setModal(True)
 
         self.line_edit = QLineEdit()
-        vbox.addWidget(self.line_edit)
-
-        hbox = QHBoxLayout()
-        buttons = [
-            '7', '8', '9', '/',
-            '4', '5', '6', '*',
-            '1', '2', '3', '-',
-            '0', '.', '=', '+'
-        ]
-
-        for btn_text in buttons:
-            btn = QPushButton(btn_text)
-            btn.clicked.connect(lambda ch=btn_text: self.on_keyboard_button_clicked(btn_text))
-            hbox.addWidget(btn)
-
-        vbox.addLayout(hbox)
-        self.setLayout(vbox)
-
-    def on_keyboard_button_clicked(self, char):
-        # if char == '=':
-        #     try:
-        #         result = eval(self.line_edit.text())
-        #         self.line_edit.setText(str(result))
-        #     except:
-        #         self.line_edit.setText("Error")
-        # else:
-        #     self.line_edit.insert(char)
-        print(char)
+        self.ui.ABtn.clicked.connect(lambda: self.line_edit.insert('A'))
+        self.ui.BBtn.clicked.connect(lambda: self.line_edit.insert('B'))
+        self.ui.CBtn.clicked.connect(lambda: self.line_edit.insert('C'))
+        self.ui.DBtn.clicked.connect(lambda: self.line_edit.insert('D'))
+        self.ui.EBtn.clicked.connect(lambda: self.line_edit.insert('E'))
+        self.ui.FBtn.clicked.connect(lambda: self.line_edit.insert('F'))
+        self.ui.GBtn.clicked.connect(lambda: self.line_edit.insert('G'))
+        self.ui.HBtn.clicked.connect(lambda: self.line_edit.insert('H'))
+        self.ui.IBtn.clicked.connect(lambda: self.line_edit.insert('I'))
+        self.ui.JBtn.clicked.connect(lambda: self.line_edit.insert('J'))
+        self.ui.KBtn.clicked.connect(lambda: self.line_edit.insert('K'))
+        self.ui.LBtn.clicked.connect(lambda: self.line_edit.insert('L'))
+        self.ui.MBtn.clicked.connect(lambda: self.line_edit.insert('M'))
+        self.ui.NBtn.clicked.connect(lambda: self.line_edit.insert('N'))
+        self.ui.OBtn.clicked.connect(lambda: self.line_edit.insert('O'))
+        self.ui.PBtn.clicked.connect(lambda: self.line_edit.insert('P'))
+        self.ui.QBtn.clicked.connect(lambda: self.line_edit.insert('Q'))
+        self.ui.RBtn.clicked.connect(lambda: self.line_edit.insert('R'))
+        self.ui.SBtn.clicked.connect(lambda: self.line_edit.insert('S'))
+        self.ui.TBtn.clicked.connect(lambda: self.line_edit.insert('T'))
+        self.ui.UBtn.clicked.connect(lambda: self.line_edit.insert('U'))
+        self.ui.VBtn.clicked.connect(lambda: self.line_edit.insert('V'))
+        self.ui.WBtn.clicked.connect(lambda: self.line_edit.insert('W'))
+        self.ui.XBtn.clicked.connect(lambda: self.line_edit.insert('X'))
+        self.ui.YBtn.clicked.connect(lambda: self.line_edit.insert('Y'))
+        self.ui.ZBtn.clicked.connect(lambda: self.line_edit.insert('Z'))
+        self.ui.No0.clicked.connect(lambda: self.line_edit.insert('0'))
+        self.ui.No1.clicked.connect(lambda: self.line_edit.insert('1'))
+        self.ui.No2.clicked.connect(lambda: self.line_edit.insert('2'))
+        self.ui.No3.clicked.connect(lambda: self.line_edit.insert('3'))
+        self.ui.No4.clicked.connect(lambda: self.line_edit.insert('4'))
+        self.ui.No5.clicked.connect(lambda: self.line_edit.insert('5'))
+        self.ui.No6.clicked.connect(lambda: self.line_edit.insert('6'))
+        self.ui.No7.clicked.connect(lambda: self.line_edit.insert('7'))
+        self.ui.No8.clicked.connect(lambda: self.line_edit.insert('8'))
+        self.ui.No9.clicked.connect(lambda: self.line_edit.insert('9'))
+        self.ui.SpaceBtn.clicked.connect(lambda: self.line_edit.insert(' '))
+        self.ui.doneBtn.clicked.connect(lambda: self.close())
+        self.ui.delBtn.clicked.connect(lambda: self.line_edit.backspace())
+        
+        
+        

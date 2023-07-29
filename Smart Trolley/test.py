@@ -1,38 +1,54 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QLineEdit
 import sys
-from virtual_keyboard import VirtualKeyboard
-class MyMainWindow(QMainWindow):
+import threading
+from PyQt5.QtWidgets import QApplication, QDialog, QLabel, QVBoxLayout, QPushButton, QProgressBar
+
+class LoaderDialog(QDialog):
     def __init__(self):
         super().__init__()
-        self.init_ui()
 
-    def init_ui(self):
-        self.setGeometry(100, 100, 800, 600)
-        central_widget = QWidget(self)
-        self.setCentralWidget(central_widget)
+        self.setWindowTitle("Loading...")
+        self.setFixedSize(300, 100)
 
-        vbox = QVBoxLayout()
-        self.input_field1 = QLineEdit()
-        self.input_field2 = QLineEdit()
+        layout = QVBoxLayout(self)
+        self.progress_bar = QProgressBar(self)
+        layout.addWidget(QLabel("Please wait while loading..."))
+        layout.addWidget(self.progress_bar)
+        self.progress_bar.setRange(0, 0)  # Indeterminate progress bar
 
-        vbox.addWidget(self.input_field1)
-        vbox.addWidget(self.input_field2)
+        # Make the dialog modal to prevent interaction with the main window
+        self.setModal(True)
 
-        central_widget.setLayout(vbox)
+class MainWindow(QDialog):
+    def __init__(self):
+        super().__init__()
 
-        self.virtual_keyboard = VirtualKeyboard()
-        self.input_field1.installEventFilter(self)
-        self.input_field2.installEventFilter(self)
+        self.setWindowTitle("Main Window")
+        self.setGeometry(100, 100, 400, 200)
 
-    def eventFilter(self, obj, event):
-        if event.type() == 2 and (obj == self.input_field1 or obj == self.input_field2):
-            self.virtual_keyboard.line_edit = obj
-            self.virtual_keyboard.show()
-            return True
-        return super().eventFilter(obj, event)
+        layout = QVBoxLayout(self)
+        self.load_button = QPushButton("Load Data", self)
+        layout.addWidget(self.load_button)
 
-if __name__ == '__main__':
+        self.load_button.clicked.connect(self.start_loading)
+
+    def start_loading(self):
+        loader_dialog = LoaderDialog()
+        loading_thread = threading.Thread(target=self.perform_request, args=(loader_dialog,))
+        loading_thread.start()
+
+        # Show the loader dialog while waiting for the thread to finish
+        loader_dialog.exec_()
+
+    def perform_request(self, loader_dialog):
+        # Simulate a backend request that takes some time
+        import time
+        time.sleep(5)
+
+        # The request is completed; close the loader dialog
+        loader_dialog.accept()
+
+if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MyMainWindow()
-    window.show()
+    main_window = MainWindow()
+    main_window.show()
     sys.exit(app.exec_())

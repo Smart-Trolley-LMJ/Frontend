@@ -3,17 +3,12 @@ import os
 import requests
 import json
 from UI.Images.ui_interface import Ui_MainWindow
-
 from inventories import Inventories
 from budget import Budget
 from cart import ShoppingCart
-# from Model.items import StoreItems
-from threading import Thread
+from Model.items import StoreItems
+from Custom_Widgets.Widgets import QMainWindow, QApplication, QAppSettings, loadJsonStyle
 
-
-
-from Custom_Widgets.Widgets import *
-from PyQt5.QtCore import QTimer
 
 CURRENT_WORKING_DIRECTORY = os.getcwd()
 
@@ -23,7 +18,9 @@ class my_app(QMainWindow):
         super(QMainWindow, self).__init__()
         url = "https://smtrolley.onrender.com/users/"
         self.user_id = requests.get(url).content.decode('utf-8')
+        
         self.user_id = json.loads(self.user_id)['id']
+        print(f"User ID{self.user_id}")
         self.ui = Ui_MainWindow()
         
         self.ui.setupUi(self)
@@ -36,12 +33,11 @@ class my_app(QMainWindow):
         self.ui.cancelBtn_2.clicked.connect(lambda: self.ui.PaymentContainer.collapseMenu()) 
 
         
-        
-        # self.items = StoreItems()
-        # self.data = self.items.response_json
-        # self.inventories = Inventories(self.data, self.ui)
+        self.items = StoreItems()
+        self.data = self.items.response_json
+        self.inventories = Inventories(self.data, self.ui)
         self.cart = ShoppingCart(self.ui, self.user_id)
-        # self.budget = Budget(self.data, self.ui)
+        self.budget = Budget(self.data, self.ui)
         
         loadJsonStyle(self, self.ui, jsonFiles = {
         f'{CURRENT_WORKING_DIRECTORY}/json/mainWindow.json',
@@ -61,14 +57,11 @@ class my_app(QMainWindow):
 
         QAppSettings.updateAppSettings(self)
 
+    # def reset 
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    ########################################################################
-    ## 
-    ########################################################################
     window = my_app()
-    # rfid_thread = Thread(target=window.cart.read_RFID, daemon=True, name="RFID Read Thread")
-    # rfid_thread.start()
 
     window.show()
 

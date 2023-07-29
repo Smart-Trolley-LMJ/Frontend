@@ -31,9 +31,9 @@
                 }
             ],
             "AppSettings": {
-                "OrginizationName": "Modern UI",
-                "ApplicationName": "Modern UI Company",
-                "OrginizationDormain": "Modern UI.org"
+                "OrginizationName": "LMJ Smart Trolleys",
+                "ApplicationName": "Smart Trolley Company",
+                "OrginizationDormain": "smt-tr.org"
             }
         }
     ]
