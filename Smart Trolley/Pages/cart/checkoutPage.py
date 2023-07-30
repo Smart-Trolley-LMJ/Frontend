@@ -59,7 +59,6 @@ class checkoutDialog(QDialog):
             self.items_layout.addWidget(item_card)
 
     def issue_payment(self):
-        
         response = requests.post(f'{self.url}{self.user_id}', json=
                                  {
                                      "mobile_number": self.ui.lineEdit.text()
@@ -67,15 +66,20 @@ class checkoutDialog(QDialog):
         response = json.loads(response)
         keys = ['pay_link', 'id']
         payment_order = {key: response[key] for key in keys if key in response}
-        print(f'Checkout: {payment_order} UserId: {self.user_id}')
+        print(f'Checkout: {response} UserId: {self.user_id}')
         if response:
             hubtelPage = WebPageViewer(payment_order['pay_link'], payment_order['id'])
             hubtelPage.exec_()
 
             paymentConfirm = ConfirmPayment(payment_order['id'])
-            paymentConfirm.exec_()
+            message, status = paymentConfirm.start_loading()
 
-        
+            print(f"{message}, status_code:{status}")
+
+        if status == 400:
+            print("There was a problem with your payment, Please try again")
+            pass
+
         self.close()
 
 

@@ -9,7 +9,7 @@ class LoaderDialog(QDialog):
 
         layout = QVBoxLayout(self)
         self.progress_bar = QProgressBar(self)
-        layout.addWidget(QLabel("Please wait while loading..."))
+        layout.addWidget(QLabel("Confirming Payment"))
         layout.addWidget(self.progress_bar)
         self.progress_bar.setRange(0, 0)  # Indeterminate progress bar
 

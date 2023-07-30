@@ -58,6 +58,9 @@ class my_app(QMainWindow):
         QAppSettings.updateAppSettings(self)
 
     # def reset 
+    def new_session(self):
+        self.budget.reset_table()
+        # self.cart.reset
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

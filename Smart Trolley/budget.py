@@ -83,6 +83,12 @@ class Budget(QWidget):
         self.ui.shoppingTable.setToolTipDuration(-1)
         self.ui.shoppingTable.setToolTip('Item has been deleted')
         self.ui.shoppingTable.removeRow(row)
+
+    def reset_table(self):
+        # Clear all data from the table
+        self.ui.shoppingTable.clearContents()
+        self.ui.shoppingTable.setRowCount(0)
+        self.ui.shoppingTable.setColumnCount(0)
         
 
 
