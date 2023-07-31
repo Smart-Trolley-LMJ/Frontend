@@ -21,7 +21,7 @@ url = "https://smtrolley.onrender.com/"
 
 class DialogBox(QDialog):
     def __init__(self):
-        super().__init__()
+        super().__init__() 
         self.add = False
         self.setModal(True)
 
@@ -42,16 +42,17 @@ class DialogBox(QDialog):
 ids = []
 
 class ShoppingCart():
-    def __init__(self, ui: Ui_MainWindow, user_id):
+    def __init__(self, ui: Ui_MainWindow):
         super().__init__()
         self.ui = ui
         self.add = True
-        self.user_id = user_id
+        self.user_id = 0
         self.receipt = []
         try:
             self.reader = SimpleMFRC522()
         except:
             self.reader = RC522()
+        self.set_UserID()
         rfid_worker = Worker()
         rfid_worker.rfidDetected.connect(self.execute)
         
@@ -60,9 +61,15 @@ class ShoppingCart():
         # Delete item from cart
         # self.ui.deleteBtn.clicked.connect(lambda: print('Bread'))
         self.ui.deleteBtn.clicked.connect(self.delete)
+
         
         # Checkout
         self.ui.checkoutBtn.clicked.connect(self.checkout)
+    
+    def set_UserID(self):
+        self.user_id = requests.get(f'{url}users').content.decode('utf-8')
+        self.user_id = json.loads(self.user_id)['id']
+        print(f"New Session User ID: {self.user_id}")
         
 
     def read_RFID(self, worker: Worker):
@@ -149,9 +156,11 @@ class ShoppingCart():
                     }
                 ) 
             response = requests.post(f'{url}cart/checkout/{self.user_id}', json=self.receipt)
-            print(f'Cart Checkout: {response.content} \n user_id:{self.user_id}') 
             self.get_all_table_data()
-            dialog = checkoutDialog(self.all_data, self.receipt, self.user_id)
+            print(f'Cart Checkout: {response.content} \n user_id:{self.user_id}') 
+            
+            # dialog = checkoutDialog(self.all_data, self.receipt, self.user_id, self.ui, self.set_UserID)
+            dialog = checkoutDialog(self.all_data, self.user_id, self.ui, self.set_UserID)
             dialog.exec_()
         except:
             pass
@@ -181,7 +190,6 @@ class ShoppingCart():
                         self.ui.itemTable_2.setItem(row, 1, QTableWidgetItem(str(current_quantity - 1)))                        
                         current_cost -= unit_cost
                         self.ui.itemTable_2.setItem(row, 3, QTableWidgetItem(str(current_cost)))
-                        
                     else:
                         self.ui.itemTable_2.removeRow(row)
                     self.calculate(-unit_cost)

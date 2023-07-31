@@ -1,46 +1,26 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QLineEdit
-import sys
-from virtual_keyboard import VirtualKeyboard
-from virtual_numpad import VirtualNumpad
-class MyMainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.init_ui()
+class Success:
+    def __init__(self, change_user_id_func):
+        self.change_user_id_func = change_user_id_func
+        self.update_cart_user_id("Lorenzo")
 
-    def init_ui(self):
-        self.setGeometry(100, 100, 800, 600)
-        central_widget = QWidget(self)
-        self.setCentralWidget(central_widget)
+    def update_cart_user_id(self, new_user_id):
+        self.change_user_id_func(new_user_id)
 
-        vbox = QVBoxLayout()
-        self.input_field1 = QLineEdit()
-        self.input_field2 = QLineEdit()
 
-        vbox.addWidget(self.input_field1)
-        vbox.addWidget(self.input_field2)
+class Cart:
+    def __init__(self, user_id):
+        self.user_id = user_id
+        # Instantiate the Success class and pass the change_user_id method
+        self.success = Success(self.change_user_id)
 
-        central_widget.setLayout(vbox)
+    def change_user_id(self, new_user_id):
+        self.user_id = new_user_id
 
-        self.virtual_keyboard = VirtualKeyboard()
-        self.input_field1.installEventFilter(self)
-        self.input_field2.installEventFilter(self)
 
-        self.virtual_numpad = VirtualNumpad()
-        self.input_field2.installEventFilter(self)
+# Example usage:
+if __name__ == "__main__":
+    cart = Cart(user_id="user123")
 
-    def eventFilter(self, obj, event):
-        if event.type() == 2 :
-            if(obj == self.input_field1) :
-                self.virtual_keyboard.line_edit = obj
-                self.virtual_keyboard.show()
-            if obj == self.input_field2:
-                self.virtual_numpad.line_edit = obj
-                self.virtual_numpad.show()
-            return True
-        return super().eventFilter(obj, event)
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    window = MyMainWindow()
-    window.show()
-    sys.exit(app.exec_())
+    print("Original User ID in Cart:", cart.user_id)
+    cart.success.update_cart_user_id(new_user_id="new_user456")
+    print("Updated User ID in Cart:", cart.user_id)

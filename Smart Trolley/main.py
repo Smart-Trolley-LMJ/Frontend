@@ -16,15 +16,11 @@ CURRENT_WORKING_DIRECTORY = os.getcwd()
 class my_app(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
-        url = "https://smtrolley.onrender.com/users/"
-        self.user_id = requests.get(url).content.decode('utf-8')
-        
-        self.user_id = json.loads(self.user_id)['id']
-        print(f"User ID{self.user_id}")
+        self.url = "https://smtrolley.onrender.com/users/"
+    
+
         self.ui = Ui_MainWindow()
-        
         self.ui.setupUi(self)
-        
         self.ui.settingsBtn.clicked.connect(lambda: self.ui.CenterMenuContainer.expandMenu())
         self.ui.infoBtn.clicked.connect(lambda: self.ui.CenterMenuContainer.expandMenu())
         self.ui.helpBtn.clicked.connect(lambda: self.ui.CenterMenuContainer.expandMenu())
@@ -32,11 +28,10 @@ class my_app(QMainWindow):
         self.ui.closeNotificationBtn.clicked.connect(lambda: self.ui.PopupNotificationContainer.collapseMenu())
         self.ui.cancelBtn_2.clicked.connect(lambda: self.ui.PaymentContainer.collapseMenu()) 
 
-        
         self.items = StoreItems()
         self.data = self.items.response_json
         self.inventories = Inventories(self.data, self.ui)
-        self.cart = ShoppingCart(self.ui, self.user_id)
+        self.cart = ShoppingCart(self.ui)
         self.budget = Budget(self.data, self.ui)
         
         loadJsonStyle(self, self.ui, jsonFiles = {
@@ -58,9 +53,13 @@ class my_app(QMainWindow):
         QAppSettings.updateAppSettings(self)
 
     # def reset 
-    def new_session(self):
-        self.budget.reset_table()
-        # self.cart.reset
+    # def new_session(self):
+    #     self.user_id = requests.get(self.url).content.decode('utf-8')
+    #     self.user_id = json.loads(self.user_id)['id']
+        
+    #     self.cart = ShoppingCart(self.ui, self.user_id, self.new_session)
+        
+    #     print(f"New Session User ID: {self.user_id}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

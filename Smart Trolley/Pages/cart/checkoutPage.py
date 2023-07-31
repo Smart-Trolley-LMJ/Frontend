@@ -5,6 +5,8 @@ from UI.Images.receiptItem import Ui_Form
 from virtual_numpad import VirtualNumpad
 from Pages.cart.hubtelPage import WebPageViewer
 from Pages.cart.paymentConfirmed import ConfirmPayment
+from Pages.cart.succesful import Success
+from Pages.cart.failed import Failed
 import requests
 import json
 
@@ -23,12 +25,14 @@ class ItemCard(QWidget):
         self.ui.item_qty.setText(data[1])
 
 class checkoutDialog(QDialog):
-    def __init__(self, array_data, receipt, user_id):
+    def __init__(self, array_data, user_id, main_ui, new_userID):
         super(QWidget, self).__init__()
         self.ui = Ui_Dialog()
         self.user_id = user_id
-        self.receipt = receipt
+        self.new_userID = new_userID #function to create a new userID
+        # self.receipt = receipt
         self.data = array_data
+        self.main_ui = main_ui
         self.url = "https://smtrolley.onrender.com/payment/"
         self.ui.setupUi(self)
 
@@ -40,7 +44,7 @@ class checkoutDialog(QDialog):
 
         self.ui.cancelPaymentBtn.clicked.connect(self.close)
         self.ui.proceedBtn.clicked.connect(self.issue_payment)
-        self.receipt = []
+        # self.receipt = []
 
         # Pop up Numpad
         self.numpad = VirtualNumpad()
@@ -77,9 +81,14 @@ class checkoutDialog(QDialog):
             print(f"{message}, status_code:{status}")
 
         if status == 400:
-            print("There was a problem with your payment, Please try again")
-            pass
+            failedDialog = Failed()
+            failedDialog.exec_()
 
-        self.close()
+        if status == 200:
+            successDialog = Success(self.main_ui,self.new_userID)
+            successDialog.exec_()
+            self.close()
+
+        
 
 
