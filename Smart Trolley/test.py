@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QLabel, QVBoxLayout, QPushButton, QDialog
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import Qt
-from PIL.ImageQt import ImageQt
+from io import BytesIO
 
 def generate_qr_code(data):
     qr = qrcode.QRCode(
@@ -16,7 +16,9 @@ def generate_qr_code(data):
     qr.make(fit=True)
 
     img = qr.make_image(fill_color="black", back_color="white")
-    return img
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    return buffer.getvalue()
 
 class QRCodeDialog(QDialog):
     def __init__(self, qr_data, parent=None):
@@ -27,11 +29,10 @@ class QRCodeDialog(QDialog):
     def init_ui(self):
         layout = QVBoxLayout()
 
-        qr_image = generate_qr_code(self.qr_data)
+        qr_image_data = generate_qr_code(self.qr_data)
 
-        # Convert PIL image to QImage
-        qr_qimage = ImageQt(qr_image)
-        qr_pixmap = QPixmap.fromImage(qr_qimage)
+        qr_image = QImage.fromData(qr_image_data)
+        qr_pixmap = QPixmap.fromImage(qr_image)
 
         qr_label = QLabel(self)
         qr_label.setPixmap(qr_pixmap.scaled(200, 200, Qt.KeepAspectRatio))
