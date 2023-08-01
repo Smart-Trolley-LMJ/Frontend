@@ -75,7 +75,11 @@ class ShoppingCart():
     def read_RFID(self, worker: Worker):
         while True:
             self.id, text = self.reader.read()
-            # text.decode('utf-8')
+            print(text)
+            try:
+                text.decode('uft-8')
+            except:
+                pass
             a = requests.get(f'{url}inventories/{text}').content.decode('utf-8')
             print(a)
             time.sleep(2)

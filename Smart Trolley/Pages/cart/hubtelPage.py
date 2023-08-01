@@ -1,49 +1,51 @@
+import qrcode
+# from Custom_Widgets.Widgets import QWidget, QVBoxLayout, QDialog, QObject, QEvent
+from PyQt5.QtWidgets import QApplication, QLabel, QVBoxLayout, QPushButton, QDialog
+from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtCore import Qt
+from io import BytesIO
+from UI.Images.qrCodeGenerator import Ui_IssuePayment
 
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-from Custom_Widgets.Widgets import QUrl, QApplication,QDialog, QVBoxLayout, QWidget, QDesktopWidget, QTimer
-import requests
-import json
+def generate_qr_code(data):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(data)
+    qr.make(fit=True)
 
+    img = qr.make_image(fill_color="black", back_color="white")
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    return buffer.getvalue()
 
-class WebPageViewer(QDialog):
-    def __init__(self, hubtel_url: str, id:str):
+class QRCodeDialog(QDialog):
+    def __init__(self, payment_link, payment_orderID):
         super().__init__()
-        self.url = hubtel_url
-        self.order_id = id
-        self.initUI()
-        self.time = QTimer(self)
-        self.time.start(120000)
-        self.time.timeout.connect(self.close)
+        self.payment_link = payment_link
+        self.ui = Ui_IssuePayment()
+        self.ui.setupUi(self)
+        self.ui.confirmPaymentBtn.clicked.connect(self.close)
+        self.add_qrcode_widget()
 
-    def initUI(self):
-        self.setWindowTitle("Web Page Viewer")
-        x,y = 0, 0
-        self.setGeometry(0, 0, 800, 600)
+    def add_qrcode_widget(self):
         layout = QVBoxLayout()
-        self.setLayout(layout)
+        layout.setAlignment(Qt.AlignCenter)
 
-        # Create the QWebEngineView widget
-        self.web_view = QWebEngineView(self)
-        layout.addWidget(self.web_view)
+        qr_image_data = generate_qr_code(self.payment_link)
 
-        # Load the initial web page 
-        self.web_view.setUrl(QUrl(self.url))
+        qr_image = QImage.fromData(qr_image_data)
+        qr_pixmap = QPixmap.fromImage(qr_image)
 
-        # self.web_view.loadFinished.connect(self.check_payment_completed)
+        qr_label = QLabel(self)
+        qr_label.setPixmap(qr_pixmap.scaled(200, 200, Qt.KeepAspectRatio))
 
-    def showEvent(self, event):
-        # This event is triggered just before the dialog is shown
-        # We will center the dialog here
-        self.center_on_screen()
+        layout.addWidget(qr_label)
 
-    def center_on_screen(self):
-        # Get the geometry of the screen
-        screen_geometry = QDesktopWidget().screenGeometry()
+        self.ui.qrCodeWidget.setLayout(layout)
+        self.setWindowTitle("QR Code")
+        self.setModal(True)
 
-        # Calculate the position to center the dialog
-        x = (screen_geometry.width() - self.width()) // 2
-        y = (screen_geometry.height() - self.height()) // 2
-
-        # Move the dialog to the center position
-        self.move(x, y)
 

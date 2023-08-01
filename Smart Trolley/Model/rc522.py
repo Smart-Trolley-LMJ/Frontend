@@ -22,7 +22,7 @@ class RC522():
 # c545824d-80d0-49d8-8693-8a0859e3961c
 # ee11fda6-f763-49f7-97c5-566ede0fbd36
 
-        self.data = ["ddc2e4d7-9de6-4fe1-a3bb-08217598a08d"
+        self.data = ["64687fd6-27f5-4451-8d2b-311406ee88e6"
                      ,"b9e5e9c3-cc5c-4d59-9355-ce4f8065f69c",
 "18aa126d-ea8a-432a-adf7-84285d3f3daf",
 "52fed6b3-8ff2-43c1-ad0f-c1c61ecf1b13",
