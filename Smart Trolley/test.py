@@ -16,3 +16,4 @@ if __name__ == "__main__":
     payment_link = "https://example.com/payment"  # Replace this with the actual payment link received from the backend
     open_payment_link(payment_link)
     sys.exit(app.exec_())
+A

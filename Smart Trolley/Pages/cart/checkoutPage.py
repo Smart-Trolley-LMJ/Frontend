@@ -3,7 +3,7 @@ from Custom_Widgets.Widgets import QWidget, QVBoxLayout, QDialog, QObject, QEven
 from UI.Images.checkout import Ui_Dialog
 from UI.Images.receiptItem import Ui_Form
 from virtual_numpad import VirtualNumpad
-# from Pages.cart.hubtelPage import WebPageViewer
+from Pages.cart.hubtelPage import WebPageViewer
 from Pages.cart.paymentConfirmed import ConfirmPayment
 from Pages.cart.succesful import Success
 from Pages.cart.failed import Failed
@@ -72,13 +72,13 @@ class checkoutDialog(QDialog):
         payment_order = {key: response[key] for key in keys if key in response}
         print(f'Checkout: {response} UserId: {self.user_id}')
         if response:
-            # hubtelPage = WebPageViewer(payment_order['pay_link'], payment_order['id'])
-            # hubtelPage.exec_()
+            hubtelPage = WebPageViewer(payment_order['pay_link'], payment_order['id'])
+            hubtelPage.exec_()
 
-            # paymentConfirm = ConfirmPayment(payment_order['id'])
-            # message, status = paymentConfirm.start_loading()
+            paymentConfirm = ConfirmPayment(payment_order['id'])
+            message, status = paymentConfirm.start_loading()
 
-            # print(f"{message}, status_code:{status}")
+            print(f"{message}, status_code:{status}")
             pass
 
         if status == 400:
