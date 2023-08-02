@@ -5,6 +5,7 @@ class Loader(QDialog):
     def __init__(self):
         super().__init__()
 
+        # self.setWindowTitle("Loading...")
         self.setFixedSize(300, 100)
         self.setWindowFlags(Qt.FramelessWindowHint)
         layout = QVBoxLayout(self)

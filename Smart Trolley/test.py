@@ -1,23 +1,16 @@
+import re
 
-from PyQt5.QtCore import QRegExp
-from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtWidgets import QWidget, QLineEdit, QApplication
+def validate_phone_number(input_str):
+    # Regular expression pattern for a 10-digit phone number
+    pattern = r'^\d{10}$'
+    return re.match(pattern, input_str) is not None
 
-import sys
+user_input = input("Enter a 10-digit phone number: ")
 
-class MyWidget(QWidget):
-    def __init__(self, parent=None):
-        super(QWidget, self).__init__(parent)
-        self.le_input = QLineEdit(self)
+# Limit input to 10 characters
+user_input = user_input[:10]
 
-        reg_ex = QRegExp("[0-9]+.?[0-9]{,2}")
-        input_validator = QRegExpValidator(reg_ex, self.le_input)
-        self.le_input.setValidator(input_validator)
-
-if __name__ == '__main__':
-    a = QApplication(sys.argv)
-
-    w = MyWidget()
-    w.show()
-
-    a.exec()
+if validate_phone_number(user_input):
+    print("Valid phone number:", user_input)
+else:
+    print("Invalid phone number")

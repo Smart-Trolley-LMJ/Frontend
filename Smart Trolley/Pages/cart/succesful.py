@@ -28,7 +28,7 @@ class Success(QDialog):
         # self.main_ui.itemTable_2.clearContents() #clear contents of cart table
         while self.main_ui.itemTable_2.rowCount() > 0:
             self.main_ui.itemTable_2.removeRow(0)
-        # self.main_ui.mainPages.setCurrentWidget(0)
+        self.main_ui.mainPages.setCurrentWidget(self.main_ui.mainPages)
         self.new_userID()
         self.close()
         

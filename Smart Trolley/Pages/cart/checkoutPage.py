@@ -1,5 +1,5 @@
 import os
-from Custom_Widgets.Widgets import QWidget, QVBoxLayout, QDialog, QObject, QEvent
+from Custom_Widgets.Widgets import QWidget, QVBoxLayout, QDialog, QObject, QEvent, QMessageBox
 from UI.Images.checkout import Ui_Dialog
 from UI.Images.receiptItem import Ui_Form
 from virtual_numpad import VirtualNumpad
@@ -7,8 +7,11 @@ from Pages.cart.hubtelPage import QRCodeDialog
 from Pages.cart.paymentConfirmed import ConfirmPayment
 from Pages.cart.succesful import Success
 from Pages.cart.failed import Failed
+from PyQt5.QtCore import Qt
 import requests
 import json
+import threading
+from utils.loader import Loader
 
 CURRENT_WORKING_DIRECTORY = os.getcwd()
 
@@ -30,6 +33,7 @@ class checkoutDialog(QDialog):
         self.ui = Ui_Dialog()
         self.user_id = user_id
         self.new_userID = new_userID #function to create a new userID
+        self.setWindowFlags(Qt.FramelessWindowHint)
         # self.receipt = receipt
         self.data = array_data
         self.main_ui = main_ui
@@ -39,6 +43,7 @@ class checkoutDialog(QDialog):
         # Create a QHBoxLayout for the items layout
         self.items_layout = QVBoxLayout()
         self.ui.checkoutScrollAreaWidget.setLayout(self.items_layout)
+        self.ui.paymentCostLabel.setText(self.main_ui.displayCost.toPlainText())
 
         self.display_items(self.data)
 
@@ -63,15 +68,24 @@ class checkoutDialog(QDialog):
             self.items_layout.addWidget(item_card)
 
     def issue_payment(self):
-        response = requests.post(f'{self.url}{self.user_id}', json=
-                                 {
-                                     "mobile_number": self.ui.lineEdit.text()
-                                 }).content.decode("utf-8")
-        response = json.loads(response)
+        momoNum = self.ui.lineEdit.text()
+        if momoNum == '' or len(momoNum)<10:
+            QMessageBox.warning(self, 'Error', 'Please Check the length of the Number')
+            return
+        # response = requests.post(f'{self.url}{self.user_id}', json=
+        #                          {
+        #                              "mobile_number": self.ui.lineEdit.text()
+        #                          })
+        self.start_loading()
+        if self.response.status_code != 200:
+            QMessageBox.warning(self, 'Error', 'Please Enter a Valid Mobile Money Number')
+            return
+        self.response = self.response.content.decode("utf-8")
+        self.response = json.loads(self.response)
         keys = ['pay_link', 'id']
-        payment_order = {key: response[key] for key in keys if key in response}
-        print(f'Checkout: {response} UserId: {self.user_id}')
-        if response:
+        payment_order = {key: self.response[key] for key in keys if key in self.response}
+        print(f'Checkout: {self.response} UserId: {self.user_id}')
+        if self.response:
             hubtelPage = QRCodeDialog(payment_order['pay_link'], payment_order['id'])
             hubtelPage.exec_()
 
@@ -90,6 +104,27 @@ class checkoutDialog(QDialog):
             successDialog.exec_()
             self.close()
 
+    def start_loading(self):
+        loader_dialog = Loader()
+        loading_thread = threading.Thread(target=self.perform_request, args=(loader_dialog,))
+        loading_thread.start()
+
+        # Show the loader dialog while waiting for the thread to finish
+        loader_dialog.exec_()
+        return 
+
+    def perform_request(self, loader_dialog):
+        # Simulate a backend request that takes some time
         
+        self.response = requests.post(f'{self.url}{self.user_id}', json=
+                                 {
+                                     "mobile_number": self.ui.lineEdit.text()
+                                 })
+        # if self.response.status_code != 200:
+        #     QMessageBox.warning(self, 'Error', 'Please Enter a Valid Mobile Money Number')
+        #     return
+        # self.response = self.response.content.decode("utf-8")
+        # self.response = json.loads(self.response)
 
-
+        # The request is completed; close the loader dialog
+        loader_dialog.accept()

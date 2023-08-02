@@ -33,6 +33,7 @@ class my_app(QMainWindow):
         self.inventories = Inventories(self.data, self.ui)
         self.cart = ShoppingCart(self.ui)
         self.budget = Budget(self.data, self.ui)
+        # self.ui.mainPages.setCurrentWidget(self.ui.cartPage)
         
         loadJsonStyle(self, self.ui, jsonFiles = {
         f'{CURRENT_WORKING_DIRECTORY}/json/mainWindow.json',
