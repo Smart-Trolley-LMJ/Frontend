@@ -13,9 +13,9 @@ class RC522():
         self.data = ["ea590116-2b4d-4b8d-b3e5-6f42c35dec03"
                      ,"e2edf332-be6f-4974-a439-567e1d38c9c8",
 "ea590116-2b4d-4b8d-b3e5-6f42c35dec03",
-"52fed6b3-8ff2-43c1-ad0f-c1c61ecf1b13",
-"780e7534-62fb-4c55-acc6-166e57b7ada8",
-"6cee019c-b5b6-41c1-a542-6c160370de30",
+"e2edf332-be6f-4974-a439-567e1d38c9c8",
+"ea590116-2b4d-4b8d-b3e5-6f42c35dec03",
+"e2edf332-be6f-4974-a439-567e1d38c9c8",
 "79ec490a-5ea6-4c76-86c8-7b795106d8e0",
 "143846de-2f57-42d9-896e-bc4eec4864eb",
 "16e7d259-450b-4ad3-8183-1f5d93563bac",

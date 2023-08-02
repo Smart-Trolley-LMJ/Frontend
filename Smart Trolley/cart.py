@@ -81,7 +81,7 @@ class ShoppingCart(QWidget):
             a = requests.get(f'{url}inventories/{text}')
             print(f'Status code:{a.status_code}')
             if a.status_code == 404:
-                # QMessageBox.warning(self, 'Error', 'ID is not in ourdatabase')
+                QMessageBox.warning(self, 'Error', 'ID is not in our database')
                 pass
             else:
                 a = a.content.decode('utf-8')
@@ -189,8 +189,8 @@ class ShoppingCart(QWidget):
         self.add = False 
         print("Here")
         dialog = DialogBox()
-        if dialog.exec_() == QDialog.Accepted:
-            self.add = True 
+        dialog.exec_()
+        self.add = True
     
 
     def remove_item(self, item):
