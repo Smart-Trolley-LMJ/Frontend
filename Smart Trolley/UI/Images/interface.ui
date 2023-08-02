@@ -799,13 +799,22 @@
           <item>
            <widget class="QWidget" name="MainContentsContainer" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_17">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QCustomStackedWidget" name="mainPages">
                <property name="styleSheet">
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>2</number>
                </property>
                <widget class="QWidget" name="inventoryPage">
                 <property name="styleSheet">
@@ -1009,8 +1018,8 @@ border: none
                           <widget class="QWidget" name="categoryScrollAreaWidgetContents">
                            <property name="geometry">
                             <rect>
-                             <x>0</x>
-                             <y>-20</y>
+                             <x>-13</x>
+                             <y>-211</y>
                              <width>690</width>
                              <height>399</height>
                             </rect>
@@ -1141,7 +1150,7 @@ background-color: rgb(255, 255, 255);
                                      <string/>
                                     </property>
                                     <property name="pixmap">
-                                     <pixmap resource="resources.qrc">:/inventories/Inventories/drinks.jpg</pixmap>
+                                     <pixmap resource="resources.qrc">:/inventories/Inventories/Clothes.jpg</pixmap>
                                     </property>
                                     <property name="scaledContents">
                                      <bool>true</bool>
@@ -1170,7 +1179,7 @@ background-color: rgb(255, 255, 255);
                                      </font>
                                     </property>
                                     <property name="text">
-                                     <string>Non-Alcoholic Drinks</string>
+                                     <string>Clothes</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -1390,7 +1399,7 @@ background-color: rgb(255, 255, 255);
                                      </font>
                                     </property>
                                     <property name="text">
-                                     <string>Alcoholic Drinks</string>
+                                     <string>Drinks</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -1809,7 +1818,7 @@ border: none
                               </font>
                              </property>
                              <property name="text">
-                              <string>Alcoholic Drinks</string>
+                              <string>Drinks</string>
                              </property>
                             </widget>
                            </item>
@@ -1843,8 +1852,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>491</width>
-                             <height>174</height>
+                             <width>509</width>
+                             <height>183</height>
                             </rect>
                            </property>
                           </widget>
@@ -1930,8 +1939,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>491</width>
-                             <height>172</height>
+                             <width>509</width>
+                             <height>181</height>
                             </rect>
                            </property>
                           </widget>
@@ -1983,7 +1992,7 @@ border: none
                               </font>
                              </property>
                              <property name="text">
-                              <string>Non-Alcoholic Drinks</string>
+                              <string>Clothes</string>
                              </property>
                             </widget>
                            </item>
@@ -2017,8 +2026,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>491</width>
-                             <height>172</height>
+                             <width>509</width>
+                             <height>181</height>
                             </rect>
                            </property>
                           </widget>
@@ -2104,8 +2113,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>491</width>
-                             <height>172</height>
+                             <width>509</width>
+                             <height>181</height>
                             </rect>
                            </property>
                           </widget>
@@ -2191,8 +2200,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>491</width>
-                             <height>172</height>
+                             <width>509</width>
+                             <height>181</height>
                             </rect>
                            </property>
                           </widget>
@@ -2278,8 +2287,8 @@ color: rgb(44, 49, 60);</string>
                             <rect>
                              <x>0</x>
                              <y>0</y>
-                             <width>491</width>
-                             <height>172</height>
+                             <width>509</width>
+                             <height>181</height>
                             </rect>
                            </property>
                           </widget>
@@ -2451,6 +2460,10 @@ QPushButton {
                          <property name="text">
                           <string>Delete Item</string>
                          </property>
+                         <property name="icon">
+                          <iconset resource="resources.qrc">
+                           <normaloff>:/white /White Icons/trash-2.svg</normaloff>:/white /White Icons/trash-2.svg</iconset>
+                         </property>
                         </widget>
                        </item>
                        <item alignment="Qt::AlignBottom">
@@ -2580,6 +2593,18 @@ p, li { white-space: pre-wrap; }
                            <verstretch>0</verstretch>
                           </sizepolicy>
                          </property>
+                         <property name="styleSheet">
+                          <string notr="true">QFrame{
+	border-top: 1px solid rgb(131, 142, 162);
+
+}
+QPushButton{
+border: none
+}
+QLabel{
+border: none
+}</string>
+                         </property>
                          <property name="frameShape">
                           <enum>QFrame::StyledPanel</enum>
                          </property>
@@ -2615,8 +2640,7 @@ p, li { white-space: pre-wrap; }
                              </size>
                             </property>
                             <property name="styleSheet">
-                             <string notr="true">
-background-color: rgb(22, 25, 29);</string>
+                             <string notr="true">background-color: rgb(22, 25, 29);</string>
                             </property>
                             <property name="text">
                              <string/>
@@ -3077,7 +3101,7 @@ border: none
                              </font>
                             </property>
                             <property name="text">
-                             <string>GHC 10.00</string>
+                             <string>GHC 1300.00</string>
                             </property>
                            </widget>
                           </item>
@@ -3091,7 +3115,7 @@ border: none
                              </font>
                             </property>
                             <property name="text">
-                             <string>AMD Microchip</string>
+                             <string>Adidas Sneakers</string>
                             </property>
                            </widget>
                           </item>
@@ -3105,7 +3129,7 @@ border: none
                              </font>
                             </property>
                             <property name="text">
-                             <string>Milk</string>
+                             <string>Samsung TV</string>
                             </property>
                            </widget>
                           </item>
@@ -3244,48 +3268,10 @@ border: none
                              <enum>QFrame::Raised</enum>
                             </property>
                             <layout class="QHBoxLayout" name="horizontalLayout_26">
-                             <item>
-                              <widget class="QLabel" name="label_39">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>50</width>
-                                 <height>50</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="pixmap">
-                                <pixmap>Logo/Nestle.png</pixmap>
-                               </property>
-                               <property name="scaledContents">
-                                <bool>true</bool>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
+                             <item alignment="Qt::AlignHCenter">
                               <widget class="QLabel" name="label_40">
                                <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;NestSale&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_41">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="pixmap">
-                                <pixmap resource="resources.qrc">:/white /White Icons/cloud-lightning.svg</pixmap>
-                               </property>
-                               <property name="scaledContents">
-                                <bool>true</bool>
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;No Available Discounts&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                </property>
                               </widget>
                              </item>
@@ -3408,7 +3394,25 @@ QLineEdit{
                    <layout class="QVBoxLayout" name="verticalLayout_30">
                     <item>
                      <widget class="QWidget" name="widget_6" native="true">
+                      <property name="contextMenuPolicy">
+                       <enum>Qt::PreventContextMenu</enum>
+                      </property>
                       <layout class="QVBoxLayout" name="verticalLayout_31">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>5</number>
+                       </property>
                        <item alignment="Qt::AlignHCenter">
                         <widget class="QLabel" name="label_9">
                          <property name="maximumSize">
@@ -3436,11 +3440,24 @@ QLineEdit{
                          <property name="frameShadow">
                           <enum>QFrame::Raised</enum>
                          </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_32">
+                         <layout class="QVBoxLayout" name="verticalLayout_21">
                           <item>
                            <widget class="QLineEdit" name="item_edit">
                             <property name="placeholderText">
                              <string>Shopping Item</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="max_quantity_edit">
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="readOnly">
+                             <bool>true</bool>
+                            </property>
+                            <property name="placeholderText">
+                             <string>Max Quantity</string>
                             </property>
                            </widget>
                           </item>
@@ -3497,6 +3514,9 @@ padding: 5px 10px</string>
                        </item>
                        <item alignment="Qt::AlignHCenter">
                         <widget class="QPushButton" name="deleteFromListBtn">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="toolTip">
                           <string/>
                          </property>
@@ -3510,7 +3530,7 @@ padding: 5px 10px</string>
                          </property>
                          <property name="icon">
                           <iconset resource="resources.qrc">
-                           <normaloff>:/white /White Icons/delete.svg</normaloff>:/white /White Icons/delete.svg</iconset>
+                           <normaloff>:/white /White Icons/trash-2.svg</normaloff>:/white /White Icons/trash-2.svg</iconset>
                          </property>
                          <property name="iconSize">
                           <size>

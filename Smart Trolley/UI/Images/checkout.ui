@@ -237,7 +237,7 @@ color: rgb(22, 25, 29);</string>
             </font>
            </property>
            <property name="text">
-            <string>Please enter your payment number</string>
+            <string>Please enter your mobile money number</string>
            </property>
           </widget>
          </item>

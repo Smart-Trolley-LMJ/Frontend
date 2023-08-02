@@ -2,18 +2,19 @@
 from os import getcwd
 from UI.Images.ui_interface import Ui_MainWindow
 # IMPORT Custom widgets
-from Custom_Widgets.Widgets import QPushButton,QMessageBox, QDialog, QTableWidgetItem,QDialogButtonBox, QVBoxLayout,QLabel
+from Custom_Widgets.Widgets import QPushButton,QMessageBox, QDialog, QTableWidgetItem, QVBoxLayout,QLabel, QWidget
 from PyQt5.QtCore import pyqtSignal
 from Model.rc522 import RC522
 from Model.worker import Worker
 import time
 import json
-from threading import Thread
+import threading
 try:
     from mfrc522 import SimpleMFRC522
 except:
     pass
 from Pages.cart.checkoutPage import checkoutDialog
+from utils.loader import Loader
 import requests
 
 CURRENT_WORKING_DIRECTORY = getcwd()
@@ -41,7 +42,7 @@ class DialogBox(QDialog):
        
 ids = []
 
-class ShoppingCart():
+class ShoppingCart(QWidget):
     def __init__(self, ui: Ui_MainWindow):
         super().__init__()
         self.ui = ui
@@ -65,6 +66,7 @@ class ShoppingCart():
         
         # Checkout
         self.ui.checkoutBtn.clicked.connect(self.checkout)
+        self.checkoutFlag = False
     
     def set_UserID(self):
         self.user_id = requests.get(f'{url}users').content.decode('utf-8')
@@ -76,16 +78,23 @@ class ShoppingCart():
         while True:
             self.id, text = self.reader.read()
             text = text[:36]
-            a = requests.get(f'{url}inventories/{text}').content.decode('utf-8')
-            print(a)
-            time.sleep(2)
-            worker.add_or_remove_item(a)
+            a = requests.get(f'{url}inventories/{text}')
+            print(f'Status code:{a.status_code}')
+            if a.status_code == 404:
+                # QMessageBox.warning(self, 'Error', 'ID is not in ourdatabase')
+                pass
+            else:
+                a = a.content.decode('utf-8')
+                time.sleep(0.5)
+                worker.add_or_remove_item(a)
 
     def execute(self, item):
         # Query database for item name with the id from the 
         item = json.loads(item)
         print(item)
         self.id = item["id"]
+        if self.checkoutFlag:
+            return
         if self.add: self.add_item(item)
         else: self.remove_item(item)
         
@@ -147,6 +156,11 @@ class ShoppingCart():
 
     def checkout(self):
         # self.ui.displayCost.setText(f'{0.00}')
+        self.checkoutFlag=True
+        if self.ui.itemTable_2.rowCount() == 0:
+            QMessageBox.warning(self, 'Error', 'Table is empty. Add items before checking out.')
+            return
+
         try:
             
             for id in ids:
@@ -156,17 +170,22 @@ class ShoppingCart():
                         "quantity":1
                     }
                 ) 
-            response = requests.post(f'{url}cart/checkout/{self.user_id}', json=self.receipt)
+            # response = requests.post(f'{url}cart/checkout/{self.user_id}', json=self.receipt)
+            self.start_loading()
             self.get_all_table_data()
-            print(f'Cart Checkout: {response.content} \n user_id:{self.user_id}') 
+            print(f'Cart Checkout: {self.response.content} \n user_id:{self.user_id}') 
             
             # dialog = checkoutDialog(self.all_data, self.receipt, self.user_id, self.ui, self.set_UserID)
             dialog = checkoutDialog(self.all_data, self.user_id, self.ui, self.set_UserID)
             dialog.exec_()
+            self.checkoutFlag = False
         except:
             pass
 
     def delete(self):
+        if self.ui.itemTable_2.rowCount() == 0:
+            QMessageBox.warning(self, 'Error', 'Table is empty.')
+            return
         self.add = False 
         print("Here")
         dialog = DialogBox()
@@ -175,6 +194,7 @@ class ShoppingCart():
     
 
     def remove_item(self, item):
+        
         row_count = self.ui.itemTable_2.rowCount()
         print("Removing Item")
         name = item["name"]
@@ -199,6 +219,21 @@ class ShoppingCart():
                 
             ids.remove(self.id)
                     
+    def start_loading(self):
+        loader_dialog = Loader()
+        loading_thread = threading.Thread(target=self.perform_request, args=(loader_dialog,))
+        loading_thread.start()
+
+        # Show the loader dialog while waiting for the thread to finish
+        loader_dialog.exec_()
+        return 
+
+    def perform_request(self, loader_dialog):
+        # Simulate a backend request that takes some time
+        self.response = requests.post(f'{url}cart/checkout/{self.user_id}', json=self.receipt)
+
+        # The request is completed; close the loader dialog
+        loader_dialog.accept()
 
 
 

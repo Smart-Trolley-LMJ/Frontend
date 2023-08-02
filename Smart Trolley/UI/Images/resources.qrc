@@ -289,6 +289,7 @@
     <file>Feather Icons/zoom-out.svg</file>
   </qresource>
   <qresource prefix="inventories">
+    <file>Inventories/Clothes.jpg</file>
     <file>Inventories/drugs.jpg</file>
     <file>Inventories/otc.jpg</file>
     <file>Inventories/painkillers.jpg</file>

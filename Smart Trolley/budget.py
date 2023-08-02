@@ -13,16 +13,16 @@ class Budget(QWidget):
     def __init__(self,data: Product,ui: Ui_MainWindow):
         super().__init__()
         self.ui = ui
-        # self.data = data
-
+        self.data = data
+        print(data)
         # Create autocomplete options
-        # self.names = set([product['name'] for product in data ])
-        # completer = QCompleter(self.names)
-        # self.ui.item_edit.setCompleter(completer)
+        self.names = set([product['name'].upper() for product in data ])
+        completer = QCompleter(self.names)
+        self.ui.item_edit.setCompleter(completer)
+        self.setMaxQuantity()
 
         # Add item to list
         self.ui.addToListBtn.clicked.connect(self.add_item)
-
         self.ui.deleteFromListBtn.clicked.connect(self.delete_row)
 
         #Pop Up Keyboard
@@ -44,11 +44,32 @@ class Budget(QWidget):
         return super().eventFilter(obj, event)
 
     def add_item(self):
+
         row_count = self.ui.shoppingTable.rowCount()
         name = self.ui.item_edit.displayText()
         quantity = self.ui.quantity_edit.displayText()
+
         if name == '' or quantity == '':
+            QMessageBox.warning(self, 'Error', 'Please enter an item and quantity')
             return
+        quantity = int(quantity)
+        # Validate item existence
+        
+        selected_item = next((item for item in self.data if name == item['name'].upper()), None)
+        if selected_item is None:
+            self.ui.item_edit.setText("")
+            QMessageBox.warning(self, 'Error', 'Item not found in the shop.')
+            return
+        
+        # Set Max Quantity
+        self.ui.max_quantity_edit.setText(f'{selected_item["quantity"]} item(s) in stock')
+
+        # Validate quantity
+        if quantity > selected_item['quantity']:
+            self.ui.quantity_edit.setText("")
+            QMessageBox.warning(self, 'Error', 'Not enough quantity available.')
+            return
+
         quantity = int(quantity)
         unit_cost = [product['price'] for product in self.data if product['name'] == name][0]
         cost = quantity * float(unit_cost)
@@ -89,6 +110,9 @@ class Budget(QWidget):
         self.ui.shoppingTable.clearContents()
         self.ui.shoppingTable.setRowCount(0)
         self.ui.shoppingTable.setColumnCount(0)
+    
+    def setMaxQuantity(self):
+        self.ui.max_quantity_edit.setText('X item(s) in stock')
         
 
 
