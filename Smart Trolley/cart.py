@@ -44,10 +44,11 @@ class DialogBox(QDialog):
 
        
 ids = []
-
+url = os.environ.get("URL")
 class ShoppingCart(QWidget):
-    def __init__(self, ui: Ui_MainWindow):
+    def __init__(self, ui: Ui_MainWindow, url):
         super().__init__()
+        self.url = url
         self.ui = ui
         self.add = True
         self.user_id = 0
@@ -57,7 +58,7 @@ class ShoppingCart(QWidget):
         except:
             self.reader = RC522()
         self.set_UserID()
-        self.url = os.environ.get("URL")
+        
         rfid_worker = Worker()
         rfid_worker.rfidDetected.connect(self.execute)
         
@@ -73,13 +74,14 @@ class ShoppingCart(QWidget):
         self.checkoutFlag = False
     
     def set_UserID(self):
-        try:
-            self.user_id = requests.get(f'{self.url}/users').content.decode('utf-8')
-            self.user_id = json.loads(self.user_id)['id']
-            print(f"New Session User ID: {self.user_id}")
-        except:
-            print("An error occured in getting user id")
-            pass
+        # try:
+        self.user_id = requests.get(f'{self.url}/users').content.decode('utf-8')
+        print(self.user_id)
+        self.user_id = json.loads(self.user_id)['id']
+        print(f"New Session User ID: {self.user_id}")
+        # except:
+        #     print("An error occured in getting user id")
+        #     pass
         
 
     def read_RFID(self, worker: Worker):
@@ -104,7 +106,6 @@ class ShoppingCart(QWidget):
                 pass
 
     def execute(self, item):
-        # Query database for item name with the id from the 
         print(item)
         item = json.loads(item)
         

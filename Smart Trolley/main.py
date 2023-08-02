@@ -17,7 +17,7 @@ class my_app(QMainWindow):
         super(QMainWindow, self).__init__()
         # self.url = "https://smtrolley.onrender.com/users/"
         ip_address = os.environ.get("URL")
-        self.url = f"{ip_address}/users"
+        self.url = f"{ip_address}"
         print(f'Main:  {self.url}')
     
 
@@ -33,7 +33,7 @@ class my_app(QMainWindow):
         self.items = StoreItems()
         self.data = self.items.response_json
         self.inventories = Inventories(self.data, self.ui)
-        self.cart = ShoppingCart(self.ui)
+        self.cart = ShoppingCart(self.ui, self.url)
         self.budget = Budget(self.data, self.ui)
         # self.ui.mainPages.setCurrentWidget(self.ui.cartPage)
         
