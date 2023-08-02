@@ -85,8 +85,9 @@ class ShoppingCart(QWidget):
     def read_RFID(self, worker: Worker):
         while True:
             self.id, text = self.reader.read()
-            print("")
+            print(text)
             text = text[:36]
+            self.id = text
             try:
                 a = requests.get(f'{self.url}/inventories/{text}')
                 print(f'Status code:{a.status_code}')
@@ -107,7 +108,7 @@ class ShoppingCart(QWidget):
         print(item)
         item = json.loads(item)
         
-        self.id = item["product_info_id"]
+
         if self.checkoutFlag:
             return
         if self.add: self.add_item(item)
