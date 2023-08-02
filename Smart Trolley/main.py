@@ -1,14 +1,13 @@
 import sys
-import os
-import requests
-import json
 from UI.Images.ui_interface import Ui_MainWindow
 from inventories import Inventories
 from budget import Budget
 from cart import ShoppingCart
 from Model.items import StoreItems
 from Custom_Widgets.Widgets import QMainWindow, QApplication, QAppSettings, loadJsonStyle
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 CURRENT_WORKING_DIRECTORY = os.getcwd()
 
@@ -16,7 +15,10 @@ CURRENT_WORKING_DIRECTORY = os.getcwd()
 class my_app(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
-        self.url = "https://smtrolley.onrender.com/users/"
+        # self.url = "https://smtrolley.onrender.com/users/"
+        ip_address = os.environ.get("URL")
+        self.url = f"{ip_address}/users"
+        print(f'Main:  {self.url}')
     
 
         self.ui = Ui_MainWindow()

@@ -1,12 +1,18 @@
 import requests
 from typing import NamedTuple
+import os
 
 class StoreItems():
     # The API endpoint
     def __init__(self) -> None:
-        url = "https://smtrolley.onrender.com/inventories/"
-        self.response = requests.get(url)
-        self.response_json = self.response.json()
+        # url = "https://smtrolley.onrender.com/inventories/"
+        self.url = os.environ.get("URL")
+        url = f"{self.url}/inventories/"
+        try:
+            self.response = requests.get(url)
+            self.response_json = self.response.json()
+        except:
+            print("An error occurred in retrieving items from the database")
         # print(self.response_json['products'][0])
         
 class Product(NamedTuple):

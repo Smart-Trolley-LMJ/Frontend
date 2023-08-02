@@ -1,16 +1,40 @@
-import re
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QDialog, QLabel, QVBoxLayout
+from PyQt5.QtCore import QTimer
 
-def validate_phone_number(input_str):
-    # Regular expression pattern for a 10-digit phone number
-    pattern = r'^\d{10}$'
-    return re.match(pattern, input_str) is not None
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
 
-user_input = input("Enter a 10-digit phone number: ")
+        self.setWindowTitle("Dialog Example")
+        self.setGeometry(100, 100, 300, 200)
 
-# Limit input to 10 characters
-user_input = user_input[:10]
+        self.button = QPushButton("Open Dialog", self)
+        self.button.clicked.connect(self.open_dialog)
+        self.setCentralWidget(self.button)
 
-if validate_phone_number(user_input):
-    print("Valid phone number:", user_input)
-else:
-    print("Invalid phone number")
+    def open_dialog(self):
+        self.dialog = QDialog(self)
+        self.dialog.setWindowTitle("Dialog")
+        
+        layout = QVBoxLayout()
+        label = QLabel("This is a dialog.")
+        layout.addWidget(label)
+        self.dialog.setLayout(layout)
+        
+        self.dialog.show()
+
+        # Automatically close the dialog after 2 seconds
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.close_dialog)
+        self.timer.start(2000)  # 2000 milliseconds = 2 seconds
+
+    def close_dialog(self):
+        self.dialog.close()
+        self.timer.stop()
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    mainWindow = MainWindow()
+    mainWindow.show()
+    sys.exit(app.exec_())

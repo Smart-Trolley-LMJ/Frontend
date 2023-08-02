@@ -16,9 +16,12 @@ except:
 from Pages.cart.checkoutPage import checkoutDialog
 from utils.loader import Loader
 import requests
+import os
 
 CURRENT_WORKING_DIRECTORY = getcwd()
-url = "https://smtrolley.onrender.com/"
+# self.url = "https://smtrolley.onrender.com/"
+
+
 
 class DialogBox(QDialog):
     def __init__(self):
@@ -54,6 +57,7 @@ class ShoppingCart(QWidget):
         except:
             self.reader = RC522()
         self.set_UserID()
+        self.url = os.environ.get("URL")
         rfid_worker = Worker()
         rfid_worker.rfidDetected.connect(self.execute)
         
@@ -69,24 +73,32 @@ class ShoppingCart(QWidget):
         self.checkoutFlag = False
     
     def set_UserID(self):
-        self.user_id = requests.get(f'{url}users').content.decode('utf-8')
-        self.user_id = json.loads(self.user_id)['id']
-        print(f"New Session User ID: {self.user_id}")
+        try:
+            self.user_id = requests.get(f'{self.url}/users').content.decode('utf-8')
+            self.user_id = json.loads(self.user_id)['id']
+            print(f"New Session User ID: {self.user_id}")
+        except:
+            print("An error occured in getting user id")
+            pass
         
 
     def read_RFID(self, worker: Worker):
         while True:
             self.id, text = self.reader.read()
             text = text[:36]
-            a = requests.get(f'{url}inventories/{text}')
-            print(f'Status code:{a.status_code}')
-            if a.status_code == 404:
-                QMessageBox.warning(self, 'Error', 'ID is not in our database')
+            try:
+                a = requests.get(f'{self.url}/inventories/{text}')
+                print(f'Status code:{a.status_code}')
+                if a.status_code != 200:
+                    QMessageBox.warning(self, 'Error', 'ID is not in our database')
+                    pass
+                else:
+                    a = a.content.decode('utf-8')
+                    time.sleep(0.5)
+                    worker.add_or_remove_item(a)
+            except:
+                print("Error occured in retrieving item")
                 pass
-            else:
-                a = a.content.decode('utf-8')
-                time.sleep(0.5)
-                worker.add_or_remove_item(a)
 
     def execute(self, item):
         # Query database for item name with the id from the 
@@ -170,7 +182,7 @@ class ShoppingCart(QWidget):
                         "quantity":1
                     }
                 ) 
-            # response = requests.post(f'{url}cart/checkout/{self.user_id}', json=self.receipt)
+            # response = requests.post(f'{self.url}cart/checkout/{self.user_id}', json=self.receipt)
             self.start_loading()
             self.get_all_table_data()
             print(f'Cart Checkout: {self.response.content} \n user_id:{self.user_id}') 
@@ -230,10 +242,14 @@ class ShoppingCart(QWidget):
 
     def perform_request(self, loader_dialog):
         # Simulate a backend request that takes some time
-        self.response = requests.post(f'{url}cart/checkout/{self.user_id}', json=self.receipt)
-
+        try:
+            self.response = requests.post(f'{self.url}/cart/checkout/{self.user_id}', json=self.receipt)
+            loader_dialog.accept()
         # The request is completed; close the loader dialog
-        loader_dialog.accept()
+        except:
+            print("Error occured in performing requests")
+            pass
+        
 
 
 

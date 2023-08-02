@@ -12,6 +12,7 @@ import requests
 import json
 import threading
 from utils.loader import Loader
+import os
 
 CURRENT_WORKING_DIRECTORY = os.getcwd()
 
@@ -37,7 +38,7 @@ class checkoutDialog(QDialog):
         # self.receipt = receipt
         self.data = array_data
         self.main_ui = main_ui
-        self.url = "https://smtrolley.onrender.com/payment/"
+        self.url = os.environ.get("URL")
         self.ui.setupUi(self)
 
         # Create a QHBoxLayout for the items layout
@@ -115,11 +116,13 @@ class checkoutDialog(QDialog):
 
     def perform_request(self, loader_dialog):
         # Simulate a backend request that takes some time
-        
-        self.response = requests.post(f'{self.url}{self.user_id}', json=
-                                 {
-                                     "mobile_number": self.ui.lineEdit.text()
-                                 })
+        try:
+            self.response = requests.post(f'{self.url}/payment/{self.user_id}', json=
+                                    {
+                                        "mobile_number": self.ui.lineEdit.text()
+                                    })
+        except:
+            print("Error occured in perfor")
         # if self.response.status_code != 200:
         #     QMessageBox.warning(self, 'Error', 'Please Enter a Valid Mobile Money Number')
         #     return

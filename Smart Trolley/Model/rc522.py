@@ -10,16 +10,9 @@ class RC522():
         self.id = -1
         self.isscanned = False
 
-        self.data = ["ea590116-2b4d-4b8d-b3e5-6f42c35dec03"
-                     ,"e2edf332-be6f-4974-a439-567e1d38c9c8",
-"ea590116-2b4d-4b8d-b3e5-6f42c35dec03",
-"e2edf332-be6f-4974-a439-567e1d38c9c8",
-"ea590116-2b4d-4b8d-b3e5-6f42c35dec03",
-"e2edf332-be6f-4974-a439-567e1d38c9c8",
-"79ec490a-5ea6-4c76-86c8-7b795106d8e0",
-"143846de-2f57-42d9-896e-bc4eec4864eb",
-"16e7d259-450b-4ad3-8183-1f5d93563bac",
-]
+        self.data = ["7d7759dc-88fd-4d76-81a9-7583a9c33b67","5294986d-2361-45a9-abe1-b5386f95ff23",
+                     "5294986d-2361-45a9-abe1-b5386f95ff23","7d7759dc-88fd-4d76-81a9-7583a9c33b67","5294986d-2361-45a9-abe1-b5386f95ff23",
+                     "7d7759dc-88fd-4d76-81a9-7583a9c33b67","5294986d-2361-45a9-abe1-b5386f95ff23",]
 
     def read(self):
         # scanned = random.choice([True,False])

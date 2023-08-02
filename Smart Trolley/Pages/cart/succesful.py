@@ -13,8 +13,8 @@ class Success(QDialog):
 
         self.layout = QVBoxLayout()
         message = QLabel("Thank you for shopping with us")
-        timer = QTimer()
-        timer.connect(self.end_shopping)
+        timer = QTimer(self)
+        timer.timeout.connect(self.end_shopping)
         timer.start(2000)
         
         self.layout.addWidget(message)
