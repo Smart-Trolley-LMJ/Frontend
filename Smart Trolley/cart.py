@@ -85,12 +85,14 @@ class ShoppingCart(QWidget):
     def read_RFID(self, worker: Worker):
         while True:
             self.id, text = self.reader.read()
+            print("")
             text = text[:36]
             try:
                 a = requests.get(f'{self.url}/inventories/{text}')
                 print(f'Status code:{a.status_code}')
                 if a.status_code != 200:
-                    QMessageBox.warning(self, 'Error', 'ID is not in our database')
+                    # QMessageBox.warning(self, 'Error', 'ID is not in our database')
+                    print("Error ID is not in our database")
                     pass
                 else:
                     a = a.content.decode('utf-8')
@@ -102,9 +104,10 @@ class ShoppingCart(QWidget):
 
     def execute(self, item):
         # Query database for item name with the id from the 
-        item = json.loads(item)
         print(item)
-        self.id = item["id"]
+        item = json.loads(item)
+        
+        self.id = item["product_info_id"]
         if self.checkoutFlag:
             return
         if self.add: self.add_item(item)

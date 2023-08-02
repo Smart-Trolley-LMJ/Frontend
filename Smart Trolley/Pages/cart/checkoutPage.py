@@ -122,7 +122,7 @@ class checkoutDialog(QDialog):
                                         "mobile_number": self.ui.lineEdit.text()
                                     })
         except:
-            print("Error occured in perfor")
+            print("Error occured in payment request")
         # if self.response.status_code != 200:
         #     QMessageBox.warning(self, 'Error', 'Please Enter a Valid Mobile Money Number')
         #     return
