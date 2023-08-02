@@ -108,7 +108,6 @@ class ShoppingCart(QWidget):
     def execute(self, item):
         print(item)
         item = json.loads(item)
-        
 
         if self.checkoutFlag:
             return

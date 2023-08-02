@@ -42,8 +42,8 @@ class ConfirmPayment():
                 self.payment = json.loads(payment.content.decode('utf-8'))
                 print("Payment Successful, You may exit with your items")
                 pass
-        except:
-            print("Error occured in checking payment")
+        except Exception as e:
+            print(f"Error occured in checking payment {e}")
 
 
 # Page Loaded: {'id': 'df24fb33-fa6c-4cf6-8620-85bece51c19a', 'pay_link_id': '854c24e27ba844a4825ea9c1daf5b2d9', 'date_created': '2023-07-29T21:30:39.752683', 'is_paid': True, 'total_cost': 1.0, 'user_id': '013855c6-a0ad-4fab-8d36-fa7a43628576', 'pay_link': 
