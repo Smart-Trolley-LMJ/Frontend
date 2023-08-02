@@ -25,14 +25,14 @@ class ItemCard(QWidget):
         self.ui.label_68.setPixmap(pixmap)
         self.ui.label_69.setText((f'<html><head/><body><p><span style=" font-size:10pt;">{data["name"]}</span></p><p><span style=" font-size:10pt;">GHS{data["price"]}</span></p></body></html>'))
 
-class NonAlcoholPage(QWidget):
+class healthPage(QWidget):
     def __init__(self, json_data: Product, ui):
         super(QWidget, self).__init__()
         self.ui : Ui_MainWindow = ui
         self.data = json_data
         self.grid = QGridLayout()
         # self.ui.foodScrollArea.setLayout(self.grid)
-        self.ui.DrinksScrollAreaWidgetContents.setLayout(self.grid)
+        self.ui.healthScrollAreaWidgetContents.setLayout(self.grid)
         self.display_grid(self.data)
         self.ui.lineEdit_2.setText('')
         self.ui.lineEdit_2.textChanged.connect(self.filter_data)
@@ -63,6 +63,6 @@ class NonAlcoholPage(QWidget):
 
     def filter_data(self):
         search_text = self.ui.lineEdit_2.text().lower()
-        filtered_data = [item for item in self.data if search_text in item["description"].lower()]
+        filtered_data = [item for item in self.data if search_text in item["name"].lower()]
         self.display_grid(filtered_data)
         

@@ -14,21 +14,22 @@ class ItemCard(QWidget):
         self.ui = Ui_ItemCard()
         self.ui.setupUi(self)
         self.populate_data(data)
-        print(f'Inventories -- {data}')
+        
+
     def populate_data(self, data):
         # Set the data values to the widgets in the item card frame
         pixmap = QPixmap('UI\Images\\food and drinks\\coca cola.jpeg')
         self.ui.label_68.setPixmap(pixmap)
         self.ui.label_69.setText((f'<html><head/><body><p><span style=" font-size:10pt;">{data["name"]}</span></p><p><span style=" font-size:10pt;">GHS{data["price"]}</span></p></body></html>'))
 
-class foodPage(QWidget):
+class gadgetsPage(QWidget):
     def __init__(self, json_data: Product, ui):
         super(QWidget, self).__init__()
         self.ui : Ui_MainWindow = ui
         self.data = json_data
         self.grid = QGridLayout()
         # self.ui.foodScrollArea.setLayout(self.grid)
-        self.ui.FoodScrollAreaWidgetContents.setLayout(self.grid)
+        self.ui.GadgetScrollAreaWidgetContents.setLayout(self.grid)
         self.display_grid(self.data)
         self.ui.lineEdit_2.textChanged.connect(self.filter_data)
 
@@ -67,27 +68,6 @@ class foodPage(QWidget):
             if column == 3:
                 column = 0
                 row += 1
-
-        # for item in filtered_data:
-
-        #     # Create QPixmap from image path
-        #     pixmap = QPixmap(item['image'])
-
-        #     # Create QLabel for the image
-        #     image_label = QLabel()
-        #     image_label.setPixmap(pixmap)
-        #     self.grid.addWidget(image_label, row, column)
-
-        #     # Create QLabel for the text
-        #     text_label = QLabel(json.dumps(item))
-        #     self.grid.addWidget(text_label, row+1, column)
-
-        #     column += 1
-
-        #     # If the current row is filled, move to the next row and reset column to 0
-        #     if column == 3:
-        #         column = 0
-        #         row += 2
 
     def filter_data(self):
         search_text = self.ui.lineEdit_2.text().lower()

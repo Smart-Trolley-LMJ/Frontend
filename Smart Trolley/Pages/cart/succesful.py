@@ -1,4 +1,4 @@
-from Custom_Widgets.Widgets import QDialog, QVBoxLayout, QLabel, QPushButton
+from Custom_Widgets.Widgets import QDialog, QVBoxLayout, QLabel, QTimer
 from UI.Images.ui_interface import Ui_MainWindow
 
 class Success(QDialog):
@@ -13,11 +13,11 @@ class Success(QDialog):
 
         self.layout = QVBoxLayout()
         message = QLabel("Thank you for shopping with us")
-        done_button = QPushButton("Done")
-        done_button.clicked.connect(self.end_shopping)
+        timer = QTimer()
+        timer.connect(self.end_shopping)
+        timer.start(2000)
         
         self.layout.addWidget(message)
-        self.layout.addWidget(done_button)
         self.setLayout(self.layout)
 
     def end_shopping(self):

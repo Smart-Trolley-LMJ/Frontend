@@ -63,6 +63,6 @@ class alcoholPage(QWidget):
 
     def filter_data(self):
         search_text = self.ui.lineEdit_2.text().lower()
-        filtered_data = [item for item in self.data if search_text in item["description"].lower()]
+        filtered_data = [item for item in self.data if search_text in item["name"].lower()]
         self.display_grid(filtered_data)
         
