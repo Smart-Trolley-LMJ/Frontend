@@ -43,7 +43,7 @@ class DialogBox(QDialog):
         
 
        
-ids = []
+# self.ids = []
 url = os.environ.get("URL")
 class ShoppingCart(QWidget):
     def __init__(self, ui: Ui_MainWindow, url):
@@ -53,6 +53,7 @@ class ShoppingCart(QWidget):
         self.add = True
         self.user_id = 0
         self.receipt = []
+        
         try:
             self.reader = SimpleMFRC522()
         except:
@@ -79,6 +80,8 @@ class ShoppingCart(QWidget):
         print(self.user_id)
         self.user_id = json.loads(self.user_id)['id']
         print(f"New Session User ID: {self.user_id}")
+        self.receipt = []
+        self.ids = []
         # except:
         #     print("An error occured in getting user id")
         #     pass
@@ -87,7 +90,7 @@ class ShoppingCart(QWidget):
     def read_RFID(self, worker: Worker):
         while True:
             self.id, text = self.reader.read()
-            print(text)
+            print(f"Reading RFID{text}")
             text = text[:36]
             self.id = text
             try:
@@ -106,7 +109,7 @@ class ShoppingCart(QWidget):
                 pass
 
     def execute(self, item):
-        print(item)
+        print(f"Execute {item}")
         item = json.loads(item)
 
         if self.checkoutFlag:
@@ -122,10 +125,10 @@ class ShoppingCart(QWidget):
         row_count = self.ui.itemTable_2.rowCount()
 
         # Check if the item already exists in the table
-        if self.id not in ids: ####  Use dictionary key value instead
+        if self.id not in self.ids: ####  Use dictionary key value instead
             for row in range(row_count):
                 item_name = self.ui.itemTable_2.item(row, 0).text()
-                if item_name == name and self.id not in ids:
+                if item_name == name and self.id not in self.ids:
                     # Item already exists, increment quantity and recalculate cost
                     current_quantity = int(self.ui.itemTable_2.item(row, 1).text())
                     new_quantity = current_quantity + 1
@@ -134,7 +137,7 @@ class ShoppingCart(QWidget):
                     current_cost = float(self.ui.itemTable_2.item(row, 3).text())
                     new_cost = current_cost + unit_cost
                     self.ui.itemTable_2.setItem(row, 3, QTableWidgetItem(str(new_cost)))
-                    ids.append(self.id)
+                    self.ids.append(self.id)
                     self.calculate(unit_cost)
                     return
     
@@ -144,9 +147,9 @@ class ShoppingCart(QWidget):
             self.ui.itemTable_2.setItem(row_count, 1, QTableWidgetItem(str(1)))
             self.ui.itemTable_2.setItem(row_count, 2, QTableWidgetItem(str(unit_cost)))
             self.ui.itemTable_2.setItem(row_count, 3, QTableWidgetItem(str(unit_cost)))
-            ids.append(self.id)
+            self.ids.append(self.id)
             self.calculate(unit_cost)
-        print(ids)
+        print(self.ids)
         
     
     def calculate(self, cost):
@@ -177,26 +180,27 @@ class ShoppingCart(QWidget):
             QMessageBox.warning(self, 'Error', 'Table is empty. Add items before checking out.')
             return
 
-        try:
+        # try:
             
-            for id in ids:
-                self.receipt.append(
-                    {
-                        "id":id,
-                        "quantity":1
-                    }
-                ) 
-            # response = requests.post(f'{self.url}cart/checkout/{self.user_id}', json=self.receipt)
-            self.start_loading()
-            self.get_all_table_data()
-            print(f'Cart Checkout: {self.response.content} \n user_id:{self.user_id}') 
-            
-            # dialog = checkoutDialog(self.all_data, self.receipt, self.user_id, self.ui, self.set_UserID)
-            dialog = checkoutDialog(self.all_data, self.user_id, self.ui, self.set_UserID)
-            dialog.exec_()
-            self.checkoutFlag = False
-        except:
-            pass
+        for id in self.ids:
+            self.receipt.append(
+                {
+                    "id":id,
+                    "quantity":1
+                }
+            ) 
+        # response = requests.post(f'{self.url}cart/checkout/{self.user_id}', json=self.receipt)
+        self.start_loading()
+        self.get_all_table_data()
+        print(f'Cart Checkout: {self.response.content} \n user_id:{self.user_id}') 
+        
+        # dialog = checkoutDialog(self.all_data, self.receipt, self.user_id, self.ui, self.set_UserID)
+        dialog = checkoutDialog(self.all_data, self.user_id, self.ui, self.set_UserID)
+        dialog.exec_()
+        self.checkoutFlag = False
+        # except Exception as error:
+        #     print(f'Cart Checkout: {error}')
+        #     pass
 
     def delete(self):
         if self.ui.itemTable_2.rowCount() == 0:
@@ -215,7 +219,7 @@ class ShoppingCart(QWidget):
         print("Removing Item")
         name = item["name"]
         unit_cost = item["product_info"]["price"]
-        if self.id in ids: ####  Use dictionary key value instead
+        if self.id in self.ids: ####  Use dictionary key value instead
             for row in range(row_count):
                 item_name = self.ui.itemTable_2.item(row, 0).text()
                 if item_name == name :
@@ -233,7 +237,7 @@ class ShoppingCart(QWidget):
                     break
                     
                 
-            ids.remove(self.id)
+            self.ids.remove(self.id)
                     
     def start_loading(self):
         loader_dialog = Loader()

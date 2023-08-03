@@ -10,8 +10,8 @@ class RC522():
         self.id = -1
         self.isscanned = False
 
-        self.data = ["7d7759dc-88fd-4d76-81a9-7583a9c33b67","5294986d-2361-45a9-abe1-b5386f95ff23",
-                     "5294986d-2361-45a9-abe1-b5386f95ff23","7d7759dc-88fd-4d76-81a9-7583a9c33b67","5294986d-2361-45a9-abe1-b5386f95ff23",
+        self.data = ["84981e68-6da4-427b-a667-e7457b45824c","a140b29c-9ced-4342-a4e1-a288d51fe51a",
+                     "fb7e9e52-0b72-400b-b771-04ed81d4e481","fb7e9e52-0b72-400b-b771-04ed81d4e481","5294986d-2361-45a9-abe1-b5386f95ff23",
                      "7d7759dc-88fd-4d76-81a9-7583a9c33b67","5294986d-2361-45a9-abe1-b5386f95ff23",]
 
     def read(self):
