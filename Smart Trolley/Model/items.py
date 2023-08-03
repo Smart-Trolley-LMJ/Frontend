@@ -6,6 +6,7 @@ class StoreItems():
     # The API endpoint
     def __init__(self) -> None:
         # url = "https://smtrolley.onrender.com/inventories/"
+        self.response_json = []
         self.url = os.environ.get("URL")
         url = f"{self.url}/inventories/"
         try:

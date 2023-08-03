@@ -15,13 +15,11 @@ class ItemCard(QWidget):
         self.ui.setupUi(self)
         self.populate_data(data)
         
-        
-
     def populate_data(self, data):
         # Set the data values to the widgets in the item card frame
-        self.image_data = requests.get(data["image_url"]).content
+        # self.image_data = requests.get(data["image_url"]).content
         pixmap = QPixmap()
-        pixmap.loadFromData(self.image_data)
+        # pixmap.loadFromData(self.image_data)
         self.ui.label_68.setPixmap(pixmap)
         self.ui.label_69.setText((f'<html><head/><body><p><span style=" font-size:10pt;">{data["name"]}</span></p><p><span style=" font-size:10pt;">GHS{data["price"]}</span></p></body></html>'))
 

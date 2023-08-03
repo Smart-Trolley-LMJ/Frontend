@@ -3,7 +3,7 @@ from Custom_Widgets.Widgets import QWidget, QGridLayout, QLabel, QPixmap
 from UI.Images.ui_interface import Ui_MainWindow
 from Model.items import Product
 from virtual_keyboard import VirtualKeyboard
-import json
+import requests
 CURRENT_WORKING_DIRECTORY = os.getcwd()
 from UI.Images.item_card import Ui_ItemCard  # Import the generated Python code for the item card UI
 
@@ -17,9 +17,12 @@ class ItemCard(QWidget):
         print(f'Inventories -- {data}')
     def populate_data(self, data):
         # Set the data values to the widgets in the item card frame
-        pixmap = QPixmap('UI\Images\\food and drinks\\coca cola.jpeg')
+        # pixmap = QPixmap('UI\Images\\food and drinks\\coca cola.jpeg')
+        self.image_data = requests.get(data["image_url"]).content
+        pixmap = QPixmap()
+        pixmap.loadFromData(self.image_data)
         self.ui.label_68.setPixmap(pixmap)
-        self.ui.label_69.setText((f'<html><head/><body><p><span style=" font-size:10pt;">{data["name"]}</span></p><p><span style=" font-size:10pt;">GHS{data["price"]}</span></p></body></html>'))
+        self.ui.label_69.setText((f'<html><head/><body><p><span style=" font-size:10pt;">{data["name"]}</span></p><p><span style=" font-size:10pt;">GHS{data["price"]}</span></p><p><span style=" font-size:11pt;">IN STOCK</span></p></body></html>'))
 
 class foodPage(QWidget):
     def __init__(self, json_data: Product, ui):

@@ -5,6 +5,7 @@ from Custom_Widgets.Widgets import *
 from virtual_keyboard import VirtualKeyboard
 from virtual_numpad import VirtualNumpad
 from Model.items import Product
+import math
 
 CURRENT_WORKING_DIRECTORY = getcwd()
 
@@ -16,10 +17,11 @@ class Budget(QWidget):
         self.data = data
         print(data)
         # Create autocomplete options
-        self.names = set([product['name'].upper() for product in data ])
+        self.names = set([product['name'].lower() for product in data ])
         completer = QCompleter(self.names)
+        completer.setCaseSensitivity(Qt.CaseInsensitive)
         self.ui.item_edit.setCompleter(completer)
-        self.setMaxQuantity()
+
 
         # Add item to list
         self.ui.addToListBtn.clicked.connect(self.add_item)
@@ -49,29 +51,33 @@ class Budget(QWidget):
         name = self.ui.item_edit.displayText()
         quantity = self.ui.quantity_edit.displayText()
 
-        if name == '' or quantity == '':
+        if name == '' and quantity == '':
             QMessageBox.warning(self, 'Error', 'Please enter an item and quantity')
             return
-        quantity = int(quantity)
+        try:
+            quantity = int(quantity)
+            if math.isnan(quantity) :
+                self.ui.item_edit.setText("")
+                self.ui.quantity_edit.setText("")
+                QMessageBox.warning(self, 'Error', 'Please enter a valid quantity')
+                return
+        except:
+            self.ui.quantity_edit.setText("")
+            QMessageBox.warning(self, 'Error', 'Please enter a valid quantity')
+            return
         # Validate item existence
         
-        selected_item = next((item for item in self.data if name == item['name'].upper()), None)
+        selected_item = next((item for item in self.data if name == item['name'].lower()), None)
+        print(selected_item)
         if selected_item is None:
             self.ui.item_edit.setText("")
+            self.ui.quantity_edit.setText("")
             QMessageBox.warning(self, 'Error', 'Item not found in the shop.')
             return
         
-        # Set Max Quantity
-        self.ui.max_quantity_edit.setText(f'{selected_item["quantity"]} item(s) in stock')
-
-        # Validate quantity
-        if quantity > selected_item['quantity']:
-            self.ui.quantity_edit.setText("")
-            QMessageBox.warning(self, 'Error', 'Not enough quantity available.')
-            return
 
         quantity = int(quantity)
-        unit_cost = [product['price'] for product in self.data if product['name'] == name][0]
+        unit_cost = selected_item["price"]
         cost = quantity * float(unit_cost)
 
         # Check if the item already exists in the table
@@ -86,6 +92,10 @@ class Budget(QWidget):
                 # current_cost = int(self.ui.shoppingTable.item(row, 4).text())
                 new_cost = new_quantity * unit_cost
                 self.ui.shoppingTable.setItem(row, 2, QTableWidgetItem(str(new_cost)))
+                self.ui.item_edit.setText("")
+                self.ui.quantity_edit.setText("")
+
+                self.calculate_total()
                 return
 
         # Item does not exist, add a new row to the table
@@ -98,12 +108,13 @@ class Budget(QWidget):
         # Clear text boxes
         self.ui.item_edit.setText("")
         self.ui.quantity_edit.setText("")
+        self.calculate_total()
+
 
     def delete_row(self):
         row = self.ui.shoppingTable.currentRow()
-        self.ui.shoppingTable.setToolTipDuration(-1)
-        self.ui.shoppingTable.setToolTip('Item has been deleted')
         self.ui.shoppingTable.removeRow(row)
+        self.calculate_total()
 
     def reset_table(self):
         # Clear all data from the table
@@ -111,8 +122,20 @@ class Budget(QWidget):
         self.ui.shoppingTable.setRowCount(0)
         self.ui.shoppingTable.setColumnCount(0)
     
-    def setMaxQuantity(self):
-        self.ui.max_quantity_edit.setText('X item(s) in stock')
+
+    def calculate_total(self):
+        total_cost = 0
+        for row in range(self.ui.shoppingTable.rowCount()):
+            cost_item = self.ui.shoppingTable.item(row, 3)
+            if cost_item is not None:
+                cost_str = cost_item.text()
+                try:
+                    cost_value = float(cost_str)
+                    total_cost += cost_value
+                except ValueError:
+                    pass
+
+        self.ui.budgetCostLabel.setText(f"GHC{total_cost:.2f}")
         
 
 

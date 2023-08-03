@@ -17,9 +17,9 @@ class ItemCard(QWidget):
         print(f'Inventories -- {data}')
     def populate_data(self, data):
         # Set the data values to the widgets in the item card frame
-        pixmap = QPixmap('UI\Images\\food and drinks\\coca cola.jpeg')
+        pixmap = QPixmap('')
         self.ui.label_68.setPixmap(pixmap)
-        self.ui.label_69.setText((f'<html><head/><body><p><span style=" font-size:10pt;">{data["name"]}</span></p><p><span style=" font-size:10pt;">GHS{data["price"]}</span></p></body></html>'))
+        self.ui.label_69.setText((f'<html><head/><body><p><span style=" font-size:10pt;">{data["name"]}</span></p><p><span style=" font-size:10pt;">GHS{data["price"]}</span></p><p><span style=" font-size:11pt;">IN STOCK</span></p></body></html>'))
 
 class cosmeticsPage(QWidget):
     def __init__(self, json_data: Product, ui):
