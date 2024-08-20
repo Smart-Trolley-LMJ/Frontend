@@ -1,2 +1,2 @@
 # Frontend
-UI for smart trolley app written with PyQt5.
+Python Desktop App for smart trolley app written with PyQt5.
